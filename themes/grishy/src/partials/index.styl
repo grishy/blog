@@ -1,0 +1,108 @@
+.main
+    // 2 rem top
+    // 1 rem text
+    // 4 rem bottom
+    padding-top ($item-size * 7)rem
+    flex 1 0 auto //Footer at bottom
+    
+    article
+        overflow hidden
+        padding 2.5rem 0
+        border-bottom solid 1px $gray
+        
+        &:first-child
+            padding-top 0
+            
+        &:nth-child(2n)  hr
+            background $green
+   
+
+.post-thumbnail
+    position relative
+    float left
+    width 33.5%
+    height 13rem
+    background $black
+    
+    @media (max-width: $grid-breakpoints.md)
+        width 100%
+        height 21rem
+        
+    @media (max-width: $grid-breakpoints.sm)
+        height 16rem
+    @media (max-width: $grid-breakpoints.xs)
+        height 13rem
+    
+    .overlay
+        position absolute
+        z-index 200
+        display flex
+        width 100%
+        height 100%
+        transition opacity $time-norm ease-out
+        opacity 0
+        background rgba(0, 0, 0, .6)
+        align-items center
+        justify-content center
+                
+        &:hover
+            opacity 1
+        
+        svg
+            height 50px
+            width 50px
+            fill $white
+
+    .post-featured-image      
+        width 100%
+        height 100%
+        background-position center
+        background-size cover
+
+
+
+
+.post-content
+    float right
+    width 65%
+    
+    @media (max-width: $grid-breakpoints.md)
+        width 100%
+        padding-top 0.5rem
+   
+    
+    .post-title
+        display block
+        font-size 1.7rem
+        line-height 1.2
+        letter-spacing -0.03125rem
+        margin 0
+        color #111
+        
+        &:hover
+            color #666
+        
+        &:hover+hr
+            width 130px
+        
+    & > p
+        font-size 1.05rem
+        font-weight 400
+        clear both
+        margin 0
+        color $almost_black
+    
+    hr
+        float left
+        width 5rem
+        height 2px
+        margin 0.8rem 0
+        transition width $time-fast ease-in-out
+        border 0
+        background $orange
+        
+        @media (max-width: $grid-breakpoints.md)
+            float none
+            width 8rem
+            margin-right auto
+            margin-left auto

@@ -1,0 +1,55 @@
+.post-meta-bar
+    z-index 200
+    padding 0.9rem 0
+    border-bottom 1px solid #f2f2f7
+    background #f9fafa
+    
+    .post-meta-contents
+        overflow hidden
+        width 90%
+        max-width 905px
+        margin 0 auto
+    
+    .post-meta-author
+        float left
+        overflow hidden
+    
+    .post-meta-author-avatar
+        display block
+        float left
+        margin-right 1rem
+        img
+            display block
+            width 2.6rem
+            height 2.6rem
+            border 1px solid #f2f2f7
+            border-radius 100%
+        @media (max-width: $grid-breakpoints.sm)
+            display none
+    
+    .post-meta-author-info
+        font-size 0.8rem
+        font-weight 600
+        float left
+        span
+            display block
+            margin (5/16)rem 0 0
+            text-transform uppercase
+            color #c2c2cb
+        a
+            font-size 1rem
+            font-weight 400
+            display block
+            transition color $time-fast ease-out, background $time-fast ease-out, opacity $time-fast ease-out, border $time-fast ease-out
+            color #58585e
+            
+            &:focus, &:hover
+                color #272729
+                color #272729
+
+.post-meta-date
+    float right
+    margin 0.75rem 0
+    padding 0
+    text-transform uppercase
+    color #58585e

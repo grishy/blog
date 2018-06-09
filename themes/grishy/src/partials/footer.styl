@@ -1,0 +1,102 @@
+$color-link = #9f9f9f
+$color-text = $orange
+
+$size-icon = 2rem
+$footer-bg = #fbfcfd
+$footer-icon = {
+  soc-vk: #45668e,
+  soc-github: #333,
+  soc-telegram: #2ca5e0,  
+  soc-youtube: #e32e28,
+  soc-feed: #e77b39
+}
+
+@keyframes pulse {
+    0% {
+        transform scale(1.1)
+    }
+
+    50% {
+        transform scale(.8)
+    }
+
+    100% {
+        transform scale(1)
+    }
+}
+
+
+
+
+
+.footer
+    padding 1.2rem 0rem 1rem 0rem
+    margin-top 2rem
+    flex 0 0 auto // Footer at bottom
+    text-align center
+    background $footer-bg
+    
+    li
+        display inline-block
+        
+    a
+        border-bottom 1px solid rgba(255,255,255,0)
+
+
+.footer-socials
+    margin 0
+    padding 0
+    
+    for key, value in $footer-icon
+        & li.{key}:hover
+            background-color value
+            svg
+                fill $white
+    
+.footer-socials li
+    height $size-icon
+    width $size-icon
+    margin-right 0.8rem
+    margin-bottom 0
+    border-radius 12%
+    transition background-color $time-norm
+
+    a
+        border none
+        display block
+        width $size-icon
+        height $size-icon
+        
+    svg
+        height ($size-icon / 3 * 2)
+        margin-top ($size-icon / 6)
+        transition: fill $time-norm
+        fill: #383838
+                
+
+.footer-link
+    font-size .9125rem
+    padding 0
+    margin 0.7rem 0
+    
+    li
+        margin-right 0.9rem
+        a
+            font-weight 400
+            color $color-link
+            &:hover
+                border-bottom 1px solid $color-link
+
+.footer-text
+    margin 0
+    a
+        color $color-text
+        &:hover
+            border-bottom 1px solid $color-text
+            
+
+.footer-heart-wrapper
+    svg
+        width 1rem
+        animation pulse 1s linear infinite
+        fill #e73a2d

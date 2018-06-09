@@ -1,0 +1,19 @@
+{
+  "name": "for_deploy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "cheerio": "^1.0.0-rc.2",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.1",
+    "highlight.js": "^9.11.0",
+    "mathjax-node": "^1.3.0",
+    "moment": "^2.20.1",
+    "simple-git": "^1.89.0",
+    "underscore.string": "^3.3.4"
+  }
+}

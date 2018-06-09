@@ -1,0 +1,7 @@
+Font: Verdana
+Size: 80 pt
+Style: Bold
+Stroke: 2px #000
+
+Thumbnail:
+- 740x300
