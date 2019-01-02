@@ -137,11 +137,15 @@ if(isMainThread) {
 
 Основной идеей этого примера является связь между потоками.
 
-Workers can receive messages in the main thread through the on method. The events we can listen to are the ones shown on the code. The message event is triggered whenever we send a message from the actual thread using the parentPort.postMessage method. You could also send a message to the thread’s code using the same method, on your worker instance and catching them using the parentPortobject.
+Потоки могут получать сообщения в основном потоке с помощью метода `on`. События, которые мы можем слушать, показаны в коде. Событие `message` запускается всякий раз, когда мы отправляем сообщение из другого потока, используя метод `parentPort.postMessage`. Вы также можете отправить сообщение в код потока, используя тот же метод, на своем рабочем экземпляре и перехватить их с помощью `parentPort`.
 
-In case you’re wondering, the code for the helper module I used is here, although there is nothing note-worthy about it.
+Если вам интересно, код для вспомогательного модуля, который я использовал, находится [здесь](https://gist.github.com/deleteman/9081c04c62294aed40e9b3abd9e8934d), хотя в этом нет ничего заслуживающего внимания.
 
-Let’s now look at a very similar example, but with a cleaner code, giving you a final idea of how you could structure your worker thread’s code.
+Давайте теперь рассмотрим очень похожий пример, но с более чистым кодом, который даст вам окончательное представление о том, как вы могли бы структурировать код вашего проекта.
+
+### Пример 3: Связываем все воедино
+
+В качестве последнего примера я собираюсь придерживаться той же функциональности, но покажу вам, как вы можете немного ее улучшить и получить более поддерживаемую версию.
 
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
@@ -179,6 +183,7 @@ request.get('http://www.google.com', (err, resp) => {
 }) 
 ```
 
+И код потока может быть внутри другого файла, например:
 
 ```js
 const {  parentPort } = require('worker_threads');
@@ -202,3 +207,10 @@ parentPort.on('message', (msg) => {
 sorter.sort(bigList);
 parentPort.postMessage({ val: sorter.firstValue, timeDiff: Date.now() - start});
 ```
+
+Разберёмся, что мы видим:
+
+1. Основной поток и рабочие потоки теперь имеют свой код в разных файлах. Это легче поддерживать и расширять
+2. Функция `startWorker` возвращает новый экземпляр, позволяя вам позже отправлять ему сообщения, если вы этого хотите.
+3. Вам больше не нужно беспокоиться, если код вашего основного потока на самом деле является основным потоком (мы удалили основной оператор IF).
+4. В коде потока вы можете видеть, как вы получите сообщение из основного потока, что обеспечивает двустороннюю асинхронную связь.
