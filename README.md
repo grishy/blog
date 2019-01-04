@@ -37,6 +37,9 @@ $ npm i
 - `blog> node script gen` - Генерация сайта с обработкой, все хранится в папке **public**
 - `blog> node script deploy` - Копирование файлов в **gh-pages** и обновление GitHub репозиториев (blog, grishy.github.io).
 
+moonman@lenovo:~/projects/blog/static/image$ jpegoptim --strip-all -f --all-progressive -m 90 ./**/*
+
+
 ### Разработка
 
 Для разработки шаблона для блога в `themes/grishy` установлен **gulp**. Он собирает стили, добавляет префиксы и оптимизирует. 
