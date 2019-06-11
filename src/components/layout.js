@@ -1,7 +1,7 @@
 import React from "react"
 import Menu from "./menu"
 
-import "../main.scss"
+import "../global.scss"
 
 class Layout extends React.Component {
   render() {
