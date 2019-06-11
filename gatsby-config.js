@@ -63,7 +63,12 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sass",
       options: {
-        postCssPlugins: [autoprefixer({ browsers: browserslist() })],
+        postCssPlugins: [
+          autoprefixer([
+            "last 5 major version",
+            ">= 0.5%",
+          ]),
+        ],
       },
     },
     `gatsby-transformer-sharp`,

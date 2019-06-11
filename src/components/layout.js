@@ -9,12 +9,7 @@ class Layout extends React.Component {
     const { children } = this.props
 
     return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-        }}
-      >
+      <div>
         <Menu />
         <main>{children}</main>
         <footer>

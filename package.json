@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "autoprefixer": "^9.6.0",
-    "browserslist": "^4.6.2",
     "classnames": "^2.2.6",
     "gatsby": "^2.8.4",
     "gatsby-image": "^2.1.2",
