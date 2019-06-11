@@ -12,41 +12,78 @@ font basic
 SVG: Font Awesome
 */
 
-@import './var.scss';
+@import "./var.scss";
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: #fff;
+  background: #f07e51;
+  text-shadow: none;
+}
+
+a {
+  transition: color 0.15s ease-out, border 0.15s ease-out,
+    opacity 0.15s ease-out, background 0.15s ease-out;
+  text-decoration: none;
+  color: #d20;
+}
+
+a::focus,
+a::hover {
+  color: #3aa0e8;
+}
+
+html {
+  line-height: 1.15;
+}
 
 body {
-    background-color: #356;
+  margin: 0;
+  background-color: #fff;
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans",
+    "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed",
+    "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  line-height: 1.4;
 }
 
-.topheader{
-    display: flex;
-    background: #E3FFD2;
-    transition: all 0.5s;
+@media (min-width: 750px) {
+  body {
+    line-height: 1.4;
+  }
 }
-	
+
+img {
+  max-width: 100%;
+}
 
 .container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }
 
-@media(min-width: 750px) {
-    .container {
-        width:750px
-    }
+@media (min-width: 750px) {
+  .container {
+    width: 750px;
+  }
 }
 
-@media(min-width: 992px) {
-    .container {
-        width:970px
-    }
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
 }
 
-@media(min-width: 1200px) {
-    .container {
-        width:1100px
-    }
+@media (min-width: 1200px) {
+  .container {
+    width: 1100px;
+  }
 }

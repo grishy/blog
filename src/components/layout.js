@@ -9,7 +9,7 @@ class Layout extends React.Component {
     const { children } = this.props
 
     return (
-      <div>
+      <div className="container">
         <Menu />
         <main>{children}</main>
         <footer>
