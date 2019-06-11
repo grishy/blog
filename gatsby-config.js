@@ -1,3 +1,6 @@
+const autoprefixer = require("autoprefixer")
+const browserslist = require("browserslist")
+
 module.exports = {
   siteMetadata: {
     title: `Grishy`,
@@ -45,9 +48,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -60,6 +60,15 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        postCssPlugins: [autoprefixer({ browsers: browserslist() })],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
   ],
