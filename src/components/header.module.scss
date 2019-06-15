@@ -1,0 +1,133 @@
+@import "../var.scss";
+
+$title-size: 2.7rem;
+$item-size: 1.05rem;
+
+$header-bg-hover: $yellow;
+
+$item-padding-vertically: $item-size / 4;
+$item-padding-horizontally: $item-size * 0.75;
+$header-top: $title-size / 2;
+
+$toggle-padding: 0.45rem;
+$toggle-size: 3rem + $toggle-padding;
+
+.header {
+  padding-top: 1.35rem;
+}
+
+.title {
+  font-size: $title-size;
+  font-weight: bold;
+  float: left;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+}
+
+.navigation {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: ($title-size - $item-size + $item-padding-vertically) / 2;
+
+  li {
+    display: inline-block;
+
+    a {
+      font-size: $item-size;
+      font-weight: 400;
+      padding: $item-padding-vertically $item-padding-horizontally;
+      display: block;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $header-bg-hover;
+    }
+  }
+}
+
+.navigation-toggle {
+  position: relative;
+  z-index: 1500;
+  display: none;
+  float: right;
+  width: $toggle-size;
+  height: $toggle-size;
+  padding: $toggle-padding;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.header-while {
+  .title {
+    color: #fff;
+  }
+  .navigation {
+    & > li {
+      & > a {
+        color: #fff;
+      }
+    }
+  }
+
+  .navigation-toggle {
+    fill: #fff;
+  }
+}
+
+.header-while .navigation > li:focus > a,
+.header-while .navigation > li:hover > a {
+  color: #000;
+}
+
+@media (max-width: map-get($grid-breakpoints, "lg")) {
+  .header_navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    transition: visibility $time-fast ease-out, opacity $time-fast ease-out;
+    text-align: center;
+    background: rgba(20, 20, 20, 0.97);
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .header_navigation-toggle {
+    display: block;
+  }
+
+  .header_navigation > li {
+    padding: 8px;
+    margin: 0;
+  }
+
+  .header_navigation > li > a {
+    font-size: 28px;
+    color: #fff;
+  }
+
+  .header_navigation > li:focus > a,
+  .header_navigation > li:hover > a {
+    color: #000;
+  }
+
+  .header_navigation__open {
+    opacity: 1;
+    visibility: visible;
+  }
+}

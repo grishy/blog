@@ -1,12 +1,11 @@
 const autoprefixer = require("autoprefixer")
-const browserslist = require("browserslist")
 
 module.exports = {
   siteMetadata: {
     title: `Grishy`,
     author: `Sergey Grishin`,
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://grishy.dev/`,
     social: {
       twitter: `kylemathews`,
     },
@@ -32,15 +31,9 @@ module.exports = {
         plugins: [
           {
             resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
@@ -51,8 +44,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Grishy blog`,
+        short_name: `Grishy`,
+        description: "Blog about programming.",
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
@@ -63,12 +57,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sass",
       options: {
-        postCssPlugins: [
-          autoprefixer([
-            "last 5 major version",
-            ">= 0.5%",
-          ]),
-        ],
+        postCssPlugins: [autoprefixer(["last 5 major version", ">= 0.5%"])],
       },
     },
     `gatsby-transformer-sharp`,

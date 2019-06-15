@@ -1,5 +1,5 @@
 import React from "react"
-import Menu from "./menu"
+import Header from "./header"
 
 import "normalize.css/normalize.css"
 import "../global.scss"
@@ -10,7 +10,7 @@ class Layout extends React.Component {
 
     return (
       <div className="container">
-        <Menu />
+        <Header />
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
