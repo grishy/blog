@@ -1,14 +1,55 @@
+@import "../var.scss";
+
+$title-size: 2.7rem;
+$item-size: 1.05rem;
+
+$header-text: #000;
+$header-bg-hover: $yellow;
+
+$item-padding-vertically: $item-size / 4;
+$item-padding-horizontally: $item-size * 0.75;
+$header-top: $title-size / 2;
+
+$toggle-padding: 0.45rem;
+$toggle-size: 3rem + $toggle-padding;
 
 .header {
-    padding-top: 1.35rem
+  padding-top: 1.35rem;
 }
 
 .header_title {
-    font-size: 2.7rem;
-    font-weight: 700;
-    float: left;
-    letter-spacing: .125rem;
-    text-transform: uppercase;
-    color: #000;
-    text-decoration: none
+  font-size: $title-size;
+  font-weight: bold;
+  float: left;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+  color: $header-text;
+  text-decoration: none;
+}
+
+.header_navigation {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: ($title-size - $item-size + $item-padding-vertically) / 2;
+
+  li {
+    display: inline-block;
+
+    a {
+      font-size: $item-size;
+      font-weight: 400;
+      padding: $item-padding-vertically $item-padding-horizontally;
+      display: block;
+      text-transform: uppercase;
+      color: $header-text;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $header-bg-hover;
+    }
+  }
 }
