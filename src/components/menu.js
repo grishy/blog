@@ -1,46 +1,74 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Motion, spring, presets } from "react-motion";
+
 import style from "./menu.module.scss"
 
-const Bars = () => {
-  return (
-    <svg viewBox="0 0 24 28">
-      <path d="M24 21v2c0 .5-.5 1-1 1H1c-.5 0-1-.5-1-1v-2c0-.5.5-1 1-1h22c.5 0 1 .5 1 1zm0-8v2c0 .5-.5 1-1 1H1c-.5 0-1-.5-1-1v-2c0-.5.5-1 1-1h22c.5 0 1 .5 1 1zm0-8v2c0 .5-.5 1-1 1H1c-.5 0-1-.5-1-1V5c0-.5.5-1 1-1h22c.5 0 1 .5 1 1z"></path>
-    </svg>
-  )
-}
-const Close = () => {
-  return (
-    <svg viewBox="0 0 24 28">
-      <path d="M20.3 20.7c0 0.4-0.2 0.8-0.4 1.1l-2.1 2.1c-0.3 0.3-0.7 0.4-1.1 0.4s-0.8-0.2-1.1-0.4l-4.6-4.6-4.6 4.6c-0.3 0.3-0.7 0.4-1.1 0.4s-0.8-0.2-1.1-0.4l-2.1-2.1c-0.3-0.3-0.4-0.7-0.4-1.1s0.2-0.8 0.4-1.1l4.6-4.6-4.6-4.6c-0.3-0.3-0.4-0.7-0.4-1.1s0.2-0.8 0.4-1.1l2.1-2.1c0.3-0.3 0.7-0.4 1.1-0.4s0.8 0.2 1.1 0.4l4.6 4.6 4.6-4.6c0.3-0.3 0.7-0.4 1.1-0.4s0.8 0.2 1.1 0.4l2.1 2.1c0.3 0.3 0.4 0.7 0.4 1.1s-0.2 0.8-0.4 1.1l-4.6 4.6 4.6 4.6c0.3 0.3 0.4 0.7 0.4 1.1z"></path>
-    </svg>
-  )
-}
 
-class Player extends React.Component {
-  constructor(props) {
-    super(props)
+class HamburgerButton extends React.Component {
+  constructor() {
+    super()
+    
     this.state = {
-      playing: false,
+      toggle: false
     }
   }
-
-  handlePlayerClick = () => {
-    if (!this.state.playing) {
-      this.setState({ playing: true })
-    } else {
-      this.setState({ playing: false })
-    }
+  
+  handleClick() {
+    this.setState({toggle: !this.state.toggle})
   }
-
+  
   render() {
+    const style = {
+      overflow: 'visible',
+      cursor: 'pointer',
+      // disable touch highlighting on devices
+      WebkitTapHighlightColor: "rgba(0,0,0,0)",
+    }
+    
     return (
-      <div className="player" onClick={this.handlePlayerClick}>
-        {this.state.playing ? <Bars /> : <Close />}
-      </div>
+      <svg 
+        viewBox="0 0 96 96"
+        height="3.45rem"
+        onClick={this.handleClick.bind(this)}
+        style={style}
+      >
+        <Motion 
+          style={{
+            x: spring(this.state.toggle ? 1 : 0, presets.wobbly ),
+            y: spring(this.state.toggle ? 0: 1, presets.wobbly ),
+          }}
+        >
+          {({ x, y }) =>
+            <g 
+              id="navicon" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="14" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+             >
+              <line 
+                transform={`translate(${x * 12}, ${x * -7}) rotate(${x * 45}, 7, 26)`} 
+                x1="7" y1="26" x2="89" y2="26" 
+               />
+              <line 
+                transform={`translate(${x * 12}, ${x * 7}) rotate(${x * -45}, 7, 70)`} 
+                x1="7" y1="70" x2="89" y2="70" 
+               />
+              <line 
+                transform={`translate(${x * -96})`} 
+                opacity={y} 
+                x1="7" y1="48" x2="89" y2="48"
+               />
+            </g>
+          }
+        </Motion>
+      </svg>
     )
   }
 }
+
 
 class Menu extends React.Component {
   constructor(props) {
@@ -84,7 +112,7 @@ class Menu extends React.Component {
 
         <ul className={style.header_navigation}>{listItems}</ul>
 
-        <Player />
+        <HamburgerButton />
       </header>
     )
   }
