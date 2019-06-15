@@ -14,6 +14,7 @@ $toggle-size: 3rem + $toggle-padding;
 
 .header {
   padding-top: 1.35rem;
+  display: flex;
 }
 
 .title {
@@ -88,7 +89,7 @@ $toggle-size: 3rem + $toggle-padding;
 }
 
 @media (max-width: map-get($grid-breakpoints, "lg")) {
-  .header_navigation {
+  .navigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -107,26 +108,26 @@ $toggle-size: 3rem + $toggle-padding;
     opacity: 0;
   }
 
-  .header_navigation-toggle {
+  .navigation-toggle {
     display: block;
   }
 
-  .header_navigation > li {
+  .navigation > li {
     padding: 8px;
     margin: 0;
   }
 
-  .header_navigation > li > a {
+  .navigation > li > a {
     font-size: 28px;
     color: #fff;
   }
 
-  .header_navigation > li:focus > a,
-  .header_navigation > li:hover > a {
+  .navigation > li:focus > a,
+  .navigation > li:hover > a {
     color: #000;
   }
 
-  .header_navigation__open {
+  .navigation__open {
     opacity: 1;
     visibility: visible;
   }

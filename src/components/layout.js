@@ -3,13 +3,14 @@ import Header from "./header"
 
 import "normalize.css/normalize.css"
 import "../global.scss"
+import style from "./layout.module.scss"
 
 class Layout extends React.Component {
   render() {
     const { children } = this.props
 
     return (
-      <div className="container">
+      <div className={style.container}>
         <Header />
         <main>{children}</main>
         <footer>
