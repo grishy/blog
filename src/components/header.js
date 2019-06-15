@@ -99,7 +99,7 @@ class Header extends React.Component {
 
   render() {
     const listItems = this.state.elems.map(el => (
-      <li>
+      <li key={el.to}>
         <Link title={el.title} to={el.to}>
           {el.title}
         </Link>
