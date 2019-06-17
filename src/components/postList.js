@@ -7,9 +7,6 @@ import style from "./postList.module.scss"
 class PostList extends React.Component {
   render() {
     const posts = this.props.posts
-    // const node = this.props.node
-    // const title = node.frontmatter.title || node.fields.slug
-
     // <div>
     //   <h3 style={{}}>
     //     <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
@@ -44,7 +41,11 @@ class PostList extends React.Component {
               ></Link>
 
               <div className={style.content}>
-                <h3>{title}</h3>
+                <Link
+                  to={node.fields.slug}
+                >
+                  {title}
+                </Link>
                 <p
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,

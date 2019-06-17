@@ -1,16 +1,12 @@
 ---
-title: Hello World
+title: "AliExpress: самые интересные находки этой недели"
 date: "2015-05-01T22:12:03.284Z"
 cover: ./cover.jpg
 thumbnail: ./thumbnail.jpg
 draft: false
 ---
 
-This is my first post on my new fake blog! How exciting!
-
-![Chinese Salty Egg](./thumbnail.jpg)
-![Chinese Salty Egg](./cover.jpg)
-
+Это будет история младшего разработчика из Яндекс.Паспорта о появлении предложения в стандарт С++, разработанного в соавторстве с Антоном antoshkka Полухиным. Как часто бывает в жизни, что-то новое началось с боли, а точнее — с желания её прекратить.
 
 I'm sure I'll write a lot more interesting things in the future.
 

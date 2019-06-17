@@ -21,8 +21,12 @@ $toggle-size: 3rem + $toggle-padding;
 .title {
   font-size: $title-size;
   font-weight: bold;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.1rem;
   text-transform: uppercase;
+  color: #000;
+}
+
+.title:hover {
   color: #000;
 }
 

@@ -1,4 +1,7 @@
 @import "../var.scss";
+@import "../mixin.scss";
+
+$img-width: 33%;
 
 .list {
   display: flex;
@@ -8,21 +11,31 @@
 .article {
   height: 15rem;
   display: flex;
-  margin-bottom: 2rem;
   padding-bottom: 2rem;
+  padding-top: 2rem;
   border-bottom: solid 1px #eee;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .thumbnail {
   background: #000;
-  width: 40%;
+  width: $img-width;
   height: 100%;
   background-position: center;
   background-size: cover;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
 }
 
 .content {
-  margin-left: 1rem;
-  background-color: #9f7;
+  @include link();
+
+  width: 100%-$img-width;
+  align-self: flex-start;
+  padding-left: 1rem;
+  a {
+    font-size: 1.5rem;
+    word-break: break-word;
+  }
 }
