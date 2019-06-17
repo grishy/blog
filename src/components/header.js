@@ -66,18 +66,18 @@ class Header extends React.Component {
           to: "/",
           title: "Главная",
         },
-        {
-          to: "/treasures",
-          title: "Сокровища",
-        },
-        {
-          to: "/about",
-          title: "Обо мне",
-        },
-        {
-          to: "/archive",
-          title: "Архив",
-        },
+        // {
+        //   to: "/treasures",
+        //   title: "Сокровища",
+        // },
+        // {
+        //   to: "/about",
+        //   title: "Обо мне",
+        // },
+        // {
+        //   to: "/archive",
+        //   title: "Архив",
+        // },
       ],
       toggle: false,
     }

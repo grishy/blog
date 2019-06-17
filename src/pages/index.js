@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import PostList from "../components/postList"
+import Header from "../components/header"
+import Footer from "../components/footer"
 import SEO from "../components/seo"
 
 class BlogIndex extends React.Component {
@@ -11,13 +12,17 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
-    return (
-      <Layout location={this.props.location} title={siteTitle} whiteHeader={false}>
-        <SEO title="All posts" />
-
-        <PostList posts={posts} />
-      </Layout>
-    )
+    return [
+      <SEO title="All posts" />,
+      <Header white={false} />,
+      <PostList posts={posts} />,
+      // <Layout
+      //   location={this.props.location}
+      //   title={siteTitle}
+      //   whiteHeader={false}
+      // ></Layout>,
+      <Footer />,
+    ]
   }
 }
 

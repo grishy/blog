@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 class BlogPostTemplate extends React.Component {
@@ -55,21 +54,22 @@ class BlogPostTemplate extends React.Component {
     //     </Layout>
 
     return (
-      <Layout
-        location={this.props.location}
-        title={siteTitle}
-        whiteHeader={true}
-      >
-        <img src={cover} />
-        <section>
-          <div>
-            <div>
-              <a href="https://grishy.ru/categories/node.js/">Node.js</a>
-            </div>
-            <h1>{post.frontmatter.title}</h1>
-          </div>
-        </section>
-      </Layout>
+      // <Layout
+      //   location={this.props.location}
+      //   title={siteTitle}
+      //   whiteHeader={true}
+      // >
+      //   <img src={cover} />
+      //   <section>
+      //     <div>
+      //       <div>
+      //         <a href="https://grishy.ru/categories/node.js/">Node.js</a>
+      //       </div>
+      //       <h1>{post.frontmatter.title}</h1>
+      //     </div>
+      //   </section>
+      // </Layout>
+      <div></div>
     )
   }
 }

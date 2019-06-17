@@ -39,6 +39,7 @@ $toggle-size: 3rem + $toggle-padding;
 
   li {
     display: inline-block;
+    transition: all $time-fast ease-out;
 
     a {
       font-size: $item-size;
