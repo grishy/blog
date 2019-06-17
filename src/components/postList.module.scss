@@ -6,23 +6,23 @@
 }
 
 .article {
-  background-color: #987;
   height: 13rem;
   display: flex;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
   border-bottom: solid 1px #eee;
   align-items: center;
 }
 
 .thumbnail {
   background: #000;
-
-  img {
-    max-width: 100%;
-  }
+  width: 30%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
 }
 
 .content {
+  margin-left: 1rem;
   background-color: #9f7;
 }

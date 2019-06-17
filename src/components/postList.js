@@ -1,5 +1,5 @@
 import React from "react"
-import classNames from "classnames/bind"
+// import classNames from "classnames/bind"
 import { Link } from "gatsby"
 
 import style from "./postList.module.scss"
@@ -32,14 +32,24 @@ class PostList extends React.Component {
             node.frontmatter.thumbnail &&
             node.frontmatter.thumbnail.childImageSharp.fluid.src
 
+          const thumbnailStyle = {
+            backgroundImage: `url(${thumbnail})`,
+          }
           return (
             <article key={node.fields.slug} className={style.article}>
-              <Link to={node.fields.slug} className={style.thumbnail}>
-                <img src={thumbnail} />
-              </Link>
+              <Link
+                to={node.fields.slug}
+                className={style.thumbnail}
+                style={thumbnailStyle}
+              ></Link>
 
               <div className={style.content}>
-                <p>{title}</p>
+                <h3>{title}</h3>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.description || node.excerpt,
+                  }}
+                />
               </div>
             </article>
           )
