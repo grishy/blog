@@ -57,6 +57,20 @@ $toggle-size: 3rem + $toggle-padding;
   }
 }
 
+.while .navigation > li > a,
+.while .title {
+  color: #fff;
+}
+
+.while .navigation-toggle {
+  fill: #fff;
+}
+
+.while .navigation > li:focus > a,
+.while .navigation > li:hover > a {
+  color: #000;
+}
+
 .navigationToggle {
   z-index: 1500;
   display: none;

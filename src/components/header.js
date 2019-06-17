@@ -97,7 +97,12 @@ class Header extends React.Component {
     ))
 
     return (
-      <header className={style.header}>
+      <header
+        className={classNames({
+          [style.header]: true,
+          [style.while]: this.props.white,
+        })}
+      >
         <Link to="/" className={style.title}>
           Grishy
         </Link>

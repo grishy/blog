@@ -7,11 +7,11 @@ import style from "./layout.module.scss"
 
 class Layout extends React.Component {
   render() {
-    const { children } = this.props
+    const { children, whiteHeader} = this.props
 
     return (
       <div className={style.container}>
-        <Header />
+        <Header white={whiteHeader} />
 
         {children}
 
