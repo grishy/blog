@@ -41,11 +41,7 @@ class PostList extends React.Component {
               ></Link>
 
               <div className={style.content}>
-                <Link
-                  to={node.fields.slug}
-                >
-                  {title}
-                </Link>
+                <Link to={node.fields.slug}>{title}</Link>
                 <p
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,
