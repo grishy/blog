@@ -15,16 +15,15 @@ $toggle-size: 3rem + $toggle-padding;
 .header {
   padding-top: 1.35rem;
   display: flex;
+  justify-content: space-between;
 }
 
 .title {
   font-size: $title-size;
   font-weight: bold;
-  float: left;
-  letter-spacing: 0.125rem;
+  letter-spacing: 0.25rem;
   text-transform: uppercase;
   color: #000;
-  text-decoration: none;
 }
 
 .navigation {
@@ -55,10 +54,8 @@ $toggle-size: 3rem + $toggle-padding;
 }
 
 .navigation-toggle {
-  position: relative;
   z-index: 1500;
   display: none;
-  float: right;
   width: $toggle-size;
   height: $toggle-size;
   padding: $toggle-padding;
