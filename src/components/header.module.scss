@@ -97,26 +97,25 @@ $toggle-size: 3rem + $toggle-padding;
     margin: 0;
     padding: 0;
     transition: visibility $time-fast ease-out, opacity $time-fast ease-out;
-    text-align: center;
     background: rgba(20, 20, 20, 0.97);
     align-items: center;
     justify-content: center;
     visibility: hidden;
     opacity: 0;
+
+    li {
+      padding: 8px;
+      margin: 0;
+
+      a {
+        font-size: 28px;
+        color: #fff;
+      }
+    }
   }
 
   .navigation-toggle {
     display: block;
-  }
-
-  .navigation > li {
-    padding: 8px;
-    margin: 0;
-  }
-
-  .navigation > li > a {
-    font-size: 28px;
-    color: #fff;
   }
 
   .navigation > li:focus > a,

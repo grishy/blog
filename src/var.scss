@@ -7,7 +7,7 @@ $yellow: #ffea00;
 
 // Transform
 $time-norm: 0.3s;
-$time-fast: ($time-norm/2)s;
+$time-fast: $time-norm/2;
 
 
 // Media

@@ -1,44 +1,34 @@
 import React from "react"
+import classNames from "classnames/bind"
 import { Link } from "gatsby"
 import { Motion, spring, presets } from "react-motion"
 
 import style from "./header.module.scss"
 
 class HamburgerButton extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {
-      toggle: false,
-    }
-  }
-
-  handleClick() {
-    this.setState({ toggle: !this.state.toggle })
-  }
-
   render() {
+    const color = this.props.toggle ? "#fff" : "#000"
+
     return (
       <svg
         viewBox="0 0 96 96"
-        height="3.45rem"
-        onClick={this.handleClick.bind(this)}
         className={style.navigationToggle}
+        onClick={this.props.onClick}
       >
         <Motion
           style={{
-            x: spring(this.state.toggle ? 1 : 0, presets.wobbly),
-            y: spring(this.state.toggle ? 0 : 1, presets.wobbly),
+            x: spring(this.props.toggle ? 1 : 0, presets.wobbly),
+            y: spring(this.props.toggle ? 0 : 1, presets.wobbly),
           }}
         >
           {({ x, y }) => (
             <g
-              id="navicon"
-              fill="none"
+              fill="#567"
               stroke="currentColor"
               strokeWidth="14"
               strokeLinecap="round"
               strokeLinejoin="round"
+              stroke={color}
             >
               <line
                 transform={`translate(${x * 12}, ${x * -7}) rotate(${x *
@@ -94,7 +84,14 @@ class Header extends React.Component {
           title: "Архив",
         },
       ],
+      toggle: false,
     }
+  }
+
+  handleClick() {
+    console.log(this.state)
+
+    this.setState({ toggle: !this.state.toggle })
   }
 
   render() {
@@ -112,9 +109,19 @@ class Header extends React.Component {
           Grishy
         </Link>
 
-        <ul className={style.navigation}>{listItems}</ul>
+        <ul
+          className={classNames({
+            [style.navigation]: true,
+            [style.navigation__open]: this.state.toggle,
+          })}
+        >
+          {listItems}
+        </ul>
 
-        <HamburgerButton />
+        <HamburgerButton
+          toggle={this.state.toggle}
+          onClick={this.handleClick.bind(this)}
+        />
       </header>
     )
   }
