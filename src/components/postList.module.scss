@@ -1,0 +1,28 @@
+@import "../var.scss";
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.article {
+  background-color: #987;
+  height: 13rem;
+  display: flex;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: solid 1px #eee;
+  align-items: center;
+}
+
+.thumbnail {
+  background: #000;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.content {
+  background-color: #9f7;
+}

@@ -12,7 +12,9 @@ class Layout extends React.Component {
     return (
       <div className={style.container}>
         <Header />
-        <main>{children}</main>
+        
+        {children}
+        
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

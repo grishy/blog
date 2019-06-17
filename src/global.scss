@@ -37,13 +37,11 @@ a::hover {
 }
 
 body {
-  margin: 0;
-  background-color: #fff;
   font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans",
     "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed",
     "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue",
     Helvetica, Arial, sans-serif;
-  line-height: 1.4;
+  // line-height: 1.4;
 }
 
 @media (min-width: 750px) {
