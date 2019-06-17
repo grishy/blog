@@ -53,7 +53,7 @@ $toggle-size: 3rem + $toggle-padding;
   }
 }
 
-.navigation-toggle {
+.navigationToggle {
   z-index: 1500;
   display: none;
   width: $toggle-size;
@@ -61,28 +61,13 @@ $toggle-size: 3rem + $toggle-padding;
   padding: $toggle-padding;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  stroke: #000;
+  transition: all $time-fast ease-out;
 }
 
-.header-while {
-  .title {
-    color: #fff;
-  }
-  .navigation {
-    & > li {
-      & > a {
-        color: #fff;
-      }
-    }
-  }
-
-  .navigation-toggle {
-    fill: #fff;
-  }
-}
-
-.header-while .navigation > li:focus > a,
-.header-while .navigation > li:hover > a {
-  color: #000;
+.navigationToggle__open {
+  stroke: #fff;
+  display: block;
 }
 
 @media (max-width: map-get($grid-breakpoints, "lg")) {
@@ -114,7 +99,7 @@ $toggle-size: 3rem + $toggle-padding;
     }
   }
 
-  .navigation-toggle {
+  .navigationToggle {
     display: block;
   }
 

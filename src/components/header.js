@@ -2,17 +2,19 @@ import React from "react"
 import classNames from "classnames/bind"
 import { Link } from "gatsby"
 import { Motion, spring, presets } from "react-motion"
+import { RemoveScrollBar } from "react-remove-scroll-bar"
 
 import style from "./header.module.scss"
 
 class HamburgerButton extends React.Component {
   render() {
-    const color = this.props.toggle ? "#fff" : "#000"
-
     return (
       <svg
         viewBox="0 0 96 96"
-        className={style.navigationToggle}
+        className={classNames({
+          [style.navigationToggle]: true,
+          [style.navigationToggle__open]: this.props.toggle,
+        })}
         onClick={this.props.onClick}
       >
         <Motion
@@ -22,14 +24,7 @@ class HamburgerButton extends React.Component {
           }}
         >
           {({ x, y }) => (
-            <g
-              fill="#567"
-              stroke="currentColor"
-              strokeWidth="14"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              stroke={color}
-            >
+            <g strokeWidth="14" strokeLinecap="round" strokeLinejoin="round">
               <line
                 transform={`translate(${x * 12}, ${x * -7}) rotate(${x *
                   45}, 7, 26)`}
@@ -89,8 +84,6 @@ class Header extends React.Component {
   }
 
   handleClick() {
-    console.log(this.state)
-
     this.setState({ toggle: !this.state.toggle })
   }
 
@@ -122,6 +115,8 @@ class Header extends React.Component {
           toggle={this.state.toggle}
           onClick={this.handleClick.bind(this)}
         />
+
+        {this.state.toggle && <RemoveScrollBar />}
       </header>
     )
   }
