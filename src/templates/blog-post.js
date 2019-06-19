@@ -39,6 +39,47 @@ class Cover extends React.Component {
   }
 }
 
+class MetaBar extends React.Component {
+  render() {
+    return (
+      <section className={style.metaBar}>
+        <div className={style.metaBarContent}>
+          <div className={style.metaBarAuthor}>
+            <a
+              target={"_blank"}
+              href={
+                "https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953"
+              }
+              className={style.metaBarAuthorAvatar}
+            >
+              <img
+                src={
+                  "https://grishy.ru/image/threads-in-node-10-5-0-a-practical-intro/avatar.jpg"
+                }
+              />
+            </a>
+            <div className={style.metaBarAuthorInfo}>
+              <span>Оригинал</span>
+              <a
+                target={"_blank"}
+                href={
+                  "https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953"
+                }
+              >
+                Fernando Doglio
+              </a>
+            </div>
+          </div>
+
+          <div className={style.metaBarDate}>
+            <time datetime={"2019-01-01T00:00:00Z"}>01 ЯНВАРЯ 2019</time>
+          </div>
+        </div>
+      </section>
+    )
+  }
+}
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -101,6 +142,7 @@ class BlogPostTemplate extends React.Component {
         />
         <Header white={true} />
         <Cover {...cover} />
+        <MetaBar />
         <h2>test</h2>
         <Footer />
       </React.Fragment>
