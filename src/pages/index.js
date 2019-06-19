@@ -1,10 +1,11 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 
 import PostList from "../components/postList"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import SEO from "../components/seo"
+import "../global.scss"
 
 class BlogIndex extends React.Component {
   render() {
@@ -12,17 +13,19 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
-    return [
-      <SEO title="All posts" />,
-      <Header white={false} />,
-      <PostList posts={posts} />,
-      // <Layout
-      //   location={this.props.location}
-      //   title={siteTitle}
-      //   whiteHeader={false}
-      // ></Layout>,
-      <Footer />,
-    ]
+    return (
+      <React.Fragment>
+        <SEO title="All posts" />
+        <Header white={false} />
+        <PostList posts={posts} />
+        {/* <Layout
+          location={this.props.location}
+          title={siteTitle}
+          whiteHeader={false}
+        ></Layout> */}
+        <Footer />
+      </React.Fragment>
+    )
   }
 }
 
