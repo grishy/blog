@@ -99,6 +99,7 @@ class Header extends React.Component {
     return (
       <header
         className={classNames({
+          "container": true,
           [style.header]: true,
           [style.while]: this.props.white,
         })}

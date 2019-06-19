@@ -1,0 +1,57 @@
+@import "../var.scss";
+@import "../mixin.scss";
+
+.cover {
+  position: relative;
+  display: flex;
+  min-height: calc(100vh - 87px);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverBackground {
+  background-position: center;
+  background-size: cover;
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.coverGradient {
+  z-index: -10;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85));
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.coverContent {
+  padding: 7rem 0;
+  max-width: 1480px;
+  width: auto;
+}
+
+.coverCategory {
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 0.3125rem;
+  margin-bottom: 0.3125rem;
+  padding: 0.3125rem;
+  transition: 0.3s;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  color: #111;
+  border: 2px solid transparent;
+  background-color: #ffea00;
+}
+
+.coverTitle {
+  font-size: 3.75rem;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1),
+    0 18px 23px rgba(0, 0, 0, 0.1);
+}

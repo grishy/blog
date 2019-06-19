@@ -1,5 +1,5 @@
 import React from "react"
-// import classNames from "classnames/bind"
+import classNames from "classnames/bind"
 import { Link } from "gatsby"
 
 import style from "./postList.module.scss"
@@ -22,7 +22,12 @@ class PostList extends React.Component {
     // </div>
 
     return (
-      <main className={style.list}>
+      <main
+        className={classNames({
+          container: true,
+          [style.list]: true,
+        })}
+      >
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           const thumbnail =

@@ -1,14 +1,50 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import classNames from "classnames/bind"
 
+import Header from "../components/header"
+import Footer from "../components/footer"
 import SEO from "../components/seo"
+import style from "./blog-post.module.scss"
+import "../global.scss"
+
+class Cover extends React.Component {
+  render() {
+    const tags = ["NODE.JS", "NODE.JS", "NODE.JS"]
+    const title = this.props.title
+
+    return (
+      <section className={style.cover}>
+        <div
+          style={{
+            backgroundImage: `url(${this.props.coverSrc})`,
+          }}
+          className={style.coverBackground}
+        ></div>
+        <div className={style.coverGradient}></div>
+
+        <div
+          className={classNames({
+            container: true,
+            [style.coverContent]: true,
+          })}
+        >
+          <div>
+            <a className={style.coverCategory}>Node.js</a>
+          </div>
+          <h1 className={style.coverTitle}>{title}</h1>
+        </div>
+      </section>
+    )
+  }
+}
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    const cover =
+    const coverSrc =
       post.frontmatter.cover && post.frontmatter.cover.childImageSharp.fluid.src
 
     //  <Layout location={this.props.location} title={siteTitle} whiteHeader={true}>
@@ -53,23 +89,21 @@ class BlogPostTemplate extends React.Component {
     //       </ul>
     //     </Layout>
 
+    const cover = {
+      coverSrc,
+      title: post.frontmatter.title,
+    }
     return (
-      // <Layout
-      //   location={this.props.location}
-      //   title={siteTitle}
-      //   whiteHeader={true}
-      // >
-      //   <img src={cover} />
-      //   <section>
-      //     <div>
-      //       <div>
-      //         <a href="https://grishy.ru/categories/node.js/">Node.js</a>
-      //       </div>
-      //       <h1>{post.frontmatter.title}</h1>
-      //     </div>
-      //   </section>
-      // </Layout>
-      <div></div>
+      <React.Fragment>
+        <SEO
+          title={cover.title}
+          description={post.frontmatter.description || post.excerpt}
+        />
+        <Header white={true} />
+        <Cover {...cover} />
+        <h2>test</h2>
+        <Footer />
+      </React.Fragment>
     )
   }
 }

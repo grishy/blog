@@ -6,6 +6,9 @@ $img-width: 33%;
 .list {
   display: flex;
   flex-direction: column;
+  left: 0;
+  right: 0;
+  padding-top: 4rem;
 }
 
 .article {
