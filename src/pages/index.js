@@ -14,7 +14,7 @@ class BlogIndex extends React.Component {
     const posts = data.allMarkdownRemark.edges
 
     return (
-      <React.Fragment>
+      <div className="wrapper">
         <SEO title="All posts" />
         <Header white={false} />
         <PostList posts={posts} />
@@ -24,7 +24,7 @@ class BlogIndex extends React.Component {
           whiteHeader={false}
         ></Layout> */}
         <Footer />
-      </React.Fragment>
+      </div>
     )
   }
 }
