@@ -10,7 +10,6 @@ import "../global.scss"
 
 class Cover extends React.Component {
   render() {
-    const tags = ["NODE.JS", "NODE.JS", "NODE.JS"]
     const title = this.props.title
 
     return (
@@ -29,9 +28,6 @@ class Cover extends React.Component {
             [style.coverContent]: true,
           })}
         >
-          <div>
-            <a className={style.coverCategory}>Node.js</a>
-          </div>
           <h1 className={style.coverTitle}>{title}</h1>
         </div>
       </section>
@@ -134,6 +130,7 @@ class BlogPostTemplate extends React.Component {
       coverSrc,
       title: post.frontmatter.title,
     }
+
     return (
       <React.Fragment>
         <SEO
@@ -143,7 +140,11 @@ class BlogPostTemplate extends React.Component {
         <Header white={true} />
         <Cover {...cover} />
         <MetaBar />
-        <h2>test</h2>
+        <section
+          className={style.post}
+          
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
         <Footer />
       </React.Fragment>
     )

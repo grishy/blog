@@ -118,3 +118,97 @@
   text-transform: uppercase;
   color: #58585e;
 }
+
+// Post
+.post {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5rem;
+  max-width: 840px;
+  margin: 1.5rem auto;
+  color: #18191b;
+  padding-right: 15px;
+  padding-left: 15px;
+  word-wrap: break-word;
+  @media (max-width: map-get($grid-breakpoints, "md")) {
+    max-width: 100%;
+  }
+
+  p {
+    margin: 1.6rem 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  blockquote {
+    padding: 0.1rem 1.5rem;
+    margin: 0 0 0.5rem;
+    background-color: #fafafa;
+    border-left: 3px solid #bd4147;
+  }
+
+  .right {
+    float: right;
+  }
+
+  hr {
+    width: 60%;
+    font-size: 1rem;
+    height: 1px;
+    margin: 40px auto;
+    border: 0;
+    font-size: 0.9rem;
+    background: #dfdfdf;
+  }
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #383a42;
+    background: #fafafa;
+  }
+
+  kbd:not(.hljs),
+  code:not(.hljs) {
+    font-family: Consolas, Lucida Console, Menlo, Monaco, monospace;
+    border-radius: 4px;
+    padding: 2px 4px;
+    background: #f5f2f0;
+    font-size: 1rem;
+    border-radius: 2px;
+  }
+  .tableContent {
+    margin: 2.5rem 4%;
+    background: #f7f7f7;
+    padding: 0.5rem;
+    color: black;
+    border-radius: 3px;
+    font-size: 1.125rem;
+    h3 {
+      margin-top: 5px;
+      padding-bottom: 10px;
+      font-size: 2.125rem;
+      text-align: center;
+      border-bottom: 1px solid #acacac;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      li {
+        margin: 0 0 0.5rem 0;
+      }
+      a {
+        color: black;
+        &:hover {
+          color: #a6c7f4;
+        }
+      }
+    }
+  }
+}
