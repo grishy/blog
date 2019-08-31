@@ -23,7 +23,7 @@ class Footer extends React.Component {
               </svg>
             </a>
           </li>
-          <li className={style.soc_vk}>
+          <li className={style.soc_github}>
             <a target="_blank" rel="noopener" href="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
