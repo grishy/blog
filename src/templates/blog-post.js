@@ -139,7 +139,7 @@ class BlogPostTemplate extends React.Component {
         />
         <Header white={true} />
         <Cover {...cover} />
-        <MetaBar />
+        {/* <MetaBar /> */}
         <section
           className={style.post}
           
