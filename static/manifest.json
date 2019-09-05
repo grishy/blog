@@ -1,8 +1,0 @@
-{
-    "name": "Grishy.ru",
-    "short_name": "Grishy",
-    "start_url": "https://grishy.ru",
-    "display": "standalone",
-    "background_color": "#fff",
-    "description": "Blog about programming."
-}

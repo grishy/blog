@@ -1,0 +1,102 @@
+/*
+    ______    _ _                 _   _                     _     _ _                   _     _     _ _
+    |  ___|  | | |               | | | |                   | |   (_) |                 | |   | |   (_) |
+    | |_ ___ | | | _____      __ | |_| |__   ___  __      _| |__  _| |_ ___   _ __ __ _| |__ | |__  _| |_
+    |  _/ _ \| | |/ _ \ \ /\ / / | __| '_ \ / _ \ \ \ /\ / / '_ \| | __/ _ \ | '__/ _` | '_ \| '_ \| | __|
+    | || (_) | | | (_) \ V  V /  | |_| | | |  __/  \ V  V /| | | | | ||  __/ | | | (_| | |_) | |_) | | |_
+    \_| \___/|_|_|\___/ \_/\_/    \__|_| |_|\___|   \_/\_/ |_| |_|_|\__\___| |_|  \__,_|_.__/|_.__/|_|\__|
+
+http://www.network-science.de/ascii/
+font basic
+
+SVG: Font Awesome
+*/
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #279de5;
+  color: #fff;
+  text-shadow: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 750px) {
+  body {
+    line-height: 1.4;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+html {
+  line-height: 1.15;
+}
+
+@media (max-width: 750px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh
+}
+
+@media (min-width: 750px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1100px;
+  }
+}

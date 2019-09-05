@@ -1,0 +1,19 @@
+@mixin link() {
+  a {
+    transition: 0.35s ease;
+    transition-property: color, background-color, border;
+    transition-delay: 25ms;
+    border-bottom: 1px solid rgba(33, 37, 41, 0.15);
+    color: #000;
+  }
+
+  a:focus,
+  a:hover {
+    color: #279de5;
+    background-color: rgba(39, 157, 229, 0.06);
+    text-shadow: 0 1px hsla(0, 0%, 100%, 0.33);
+    transition-duration: 50ms;
+    transition-delay: 0ms;
+    border-bottom-color: rgba(39, 157, 229, 0.2);
+  }
+}

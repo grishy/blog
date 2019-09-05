@@ -1,0 +1,215 @@
+@import "../var.scss";
+@import "../mixin.scss";
+
+.cover {
+  position: relative;
+  display: flex;
+  // min-height: calc(100vh - 87px);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverBackground {
+  background-position: center;
+  background-size: cover;
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.coverGradient {
+  z-index: -10;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85));
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.coverContent {
+  padding: 15rem 0;
+  max-height: 100vh;
+  max-width: 1480px;
+  width: auto;
+}
+
+.coverCategory {
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 0.3125rem;
+  margin-bottom: 0.3125rem;
+  padding: 0.3125rem;
+  transition: 0.3s;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  color: #111;
+  border: 2px solid transparent;
+  background-color: #ffea00;
+}
+
+.coverTitle {
+  font-size: 3.75rem;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1),
+    0 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.metaBar {
+  z-index: 200;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #f2f2f7;
+  background: #f9fafa;
+}
+
+.metaBarContent {
+  overflow: hidden;
+  width: 90%;
+  max-width: 905px;
+  margin: 0 auto;
+}
+
+.metaBarAuthor {
+  float: left;
+  overflow: hidden;
+
+  .metaBarAuthorAvatar {
+    display: block;
+    float: left;
+    margin-right: 1rem;
+
+    img {
+      display: block;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid #f2f2f7;
+      border-radius: 100%;
+    }
+  }
+
+  .metaBarAuthorInfo {
+    font-size: 0.8rem;
+    font-weight: 600;
+    float: left;
+
+    span {
+      display: block;
+      margin: 0.3125rem 0 0;
+      text-transform: uppercase;
+      color: #c2c2cb;
+    }
+
+    a {
+      font-size: 1rem;
+      font-weight: 400;
+      display: block;
+      transition: color 0.15s ease-out, background 0.15s ease-out,
+        opacity 0.15s ease-out, border 0.15s ease-out;
+      color: #58585e;
+    }
+  }
+}
+
+.metaBarDate {
+  float: right;
+  margin: 0.75rem 0;
+  padding: 0;
+  text-transform: uppercase;
+  color: #58585e;
+}
+
+// Post
+.post {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5rem;
+  max-width: 840px;
+  margin: 1.5rem auto;
+  color: #18191b;
+  padding-right: 15px;
+  padding-left: 15px;
+  word-wrap: break-word;
+  @media (max-width: map-get($grid-breakpoints, "md")) {
+    max-width: 100%;
+  }
+
+  p {
+    margin: 1.6rem 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  blockquote {
+    padding: 0.1rem 1.5rem;
+    margin: 0 0 0.5rem;
+    background-color: #fafafa;
+    border-left: 3px solid #bd4147;
+  }
+
+  .right {
+    float: right;
+  }
+
+  hr {
+    width: 60%;
+    font-size: 1rem;
+    height: 1px;
+    margin: 40px auto;
+    border: 0;
+    font-size: 0.9rem;
+    background: #dfdfdf;
+  }
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #383a42;
+    background: #fafafa;
+  }
+
+  kbd:not(.hljs),
+  code:not(.hljs) {
+    font-family: Consolas, Lucida Console, Menlo, Monaco, monospace;
+    border-radius: 4px;
+    padding: 2px 4px;
+    background: #f5f2f0;
+    font-size: 1rem;
+    border-radius: 2px;
+  }
+  .tableContent {
+    margin: 2.5rem 4%;
+    background: #f7f7f7;
+    padding: 0.5rem;
+    color: black;
+    border-radius: 3px;
+    font-size: 1.125rem;
+    h3 {
+      margin-top: 5px;
+      padding-bottom: 10px;
+      font-size: 2.125rem;
+      text-align: center;
+      border-bottom: 1px solid #acacac;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      li {
+        margin: 0 0 0.5rem 0;
+      }
+      a {
+        color: black;
+        &:hover {
+          color: #a6c7f4;
+        }
+      }
+    }
+  }
+}
