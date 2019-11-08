@@ -184,7 +184,7 @@ fingerprintCollector.registerTest('canvas', () => {
     return result;
 });
 
-// Other tests ...
+// Другие тесты ...
 
 fingerprintCollector.registerTest('screenResolution', () => {
     ...
@@ -193,8 +193,16 @@ fingerprintCollector.registerTest('screenResolution', () => {
 ```
 
 ## Обфускация скрипта
-Сейчас 
+Сейчас, когда у нас есть fingerprinting скрипт, мы можем обфусцировать его. Существует несколько различных подходов, простые или более сложные и эффективные и не очень. Вы можете почитать об этом более подробно в [другой статье](https://antoinevastel.com/obfuscation/2017/12/06/presentation-obfuscation.html)(англ.), где я рассказывают о основных техниках обфускации. В данном посте, мы будем использовать простую технику обфускации, которая <abbr title="consists">заключается</abbr> в замене статических строк и чисел, <abbr title="as well as">а так же</abbr> к свойствам и методам объекта с помощью вызова функции, чтобы сделать его менее читаемым. Если вы хотите нечто похожее, но production-ready решение, вы можете использовать [obfuscator.io](https://obfuscator.io/) или связанный с ним npm пакет. Техника, представленная в этом после довольно похожа на **String Array** опцию в их обфускаторе.
+
+<abbr title="The way">То</abbr>, как я реализую обфускато, явно не оптимально. Более того, я <abbr title="not consistent">не использую один стиль</abbr> по всему коду. Идея состоит в том, чтобы показать различные пути манипулирования кодом и [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree). Я использую библиотеку [shift](https://shift-ast.org/), но можно использовать и другие. Например [Esprima](https://esprima.org/).
 
 
+
+
+---
+consists - заключается
+as well as - так же как
+either - тоже, любой
 
 Оригинал: [A simple homemade JavaScript obfuscator](https://antoinevastel.com/javascript/2019/09/04/home-made-obfuscator.html)
