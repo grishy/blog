@@ -197,12 +197,222 @@ fingerprintCollector.registerTest('screenResolution', () => {
 
 <abbr title="The way">То</abbr>, как я реализую обфускато, явно не оптимально. Более того, я <abbr title="not consistent">не использую один стиль</abbr> по всему коду. Идея состоит в том, чтобы показать различные пути манипулирования кодом и [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree). Я использую библиотеку [shift](https://shift-ast.org/), но можно использовать и другие. Например [Esprima](https://esprima.org/).
 
+Мы создадим **src/obfuscator.js** файл, который будет содержать код нашей программы обфускации. В этом файле, мы добавим несколько преобразователей кода, которые сделают его менее читаемым. Например, мы хотим преобразовать присваивания свойств объекта, чтобы сделать их менее читаемыми. Мы так же можем заменить статические строки и чиста вызовами функций.
+```js
+context.textBaseline = "alphabetic";
+// станет
+context[f(index, arr)] = f(indexOther, arr);
+```
+
+Мы так же хотим изменить статический доступ к полям объекта (методам и атрибутам), чтобы сделать их динамическими, используя вызовы функций:
+```js
+errorMessage = e.message;
+// станет
+errorMessage = e[f(index, arr)];
+```
+
+Чтобы сделать это, в начале нужно импортировать библиотеки, которые мы будем использовать.
+```js
+const { RefactorSession } = require('shift-refactor');
+const { parseScript } = require('shift-parser');
+const Shift = require('shift-ast');
+const fs = require('fs');
+```
+
+Для обфускации скрипта будем манипулировать с его AST (Абстрактное Синтаксическое Дерево), дневовыдным представлением кода. Если вы хотите посмотреть как оно выглядит в UI, можно использовать [AST Explorer](https://astexplorer.net/).
+
+Затем мы создаем функцию `obfuscateFPScript`, которая принимает в качестве входных аргументов путь к файлу для обфускации и путь для сохранения результата преобразования. В этой функции мы начинаем собирать различные строки, числа и свойства объекта для обфускации.
+```js
+function obfuscateFPScript(src, dest) {
+    // Читаем содержимое переданного файла (не обфусцированное)
+    const fileContents = fs.readFileSync(src, 'utf8');
+
+    // Используя shift-ast библиотеку парсим скрипт и строим ast
+    const tree = parseScript(fileContents);
+
+    // Инициализируем сессию рефакторинга, используемая, например, для запроса узлов дерева 
+    const refactor = new RefactorSession(tree);
+
+    // Приведённые ниже 5 операторов извлекают различные строки, числа и свойства объектов
+    // которые мы хотим обфусцировать
+    // refactor.query позволяет запрашивать определённые узлы AST используя синтаксис, похожий на CSS
+    // Таким образом, напрмиер refactor.query('LiteralStringExpression') вернёт все LiteralStringExpression
+    // в программе.
+    const stringsProgram = Array.from(new Set(refactor.query('LiteralStringExpression').map(v => v.value)));
+    const numbersProgram = Array.from(new Set(refactor.query('LiteralNumericExpression').map(v => v.value)));
+    const bindingProperties = Array.from(new Set(refactor.query('AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]').map(v => v.binding.property)));
+    const expStatementStr = Array.from(new Set(refactor.query('ExpressionStatement[expression.expression.type="StaticMemberExpression"]').map(exp => exp.expression.expression.property)));
+    const staticMemberStr = Array.from(new Set(refactor.query('StaticMemberExpression').map(v => v.property)));
+
+    const staticLiterals = stringsProgram.concat(numbersProgram, bindingProperties, expStatementStr, staticMemberStr);
+    // staticLiterals - содержит атрибуты, которые мы хотим обфусцировать
+    [ 'AsyncFunction',
+      'adblock',
+      'div',
+      '&nbsp;',
+      'adsbox',
+      'canvas',
+      'rgb(255,255,0)',
+      'timezone',
+      0,
+      400,
+      200,
+      10,
+      ...
+      'screenX',
+      'pageXOffset',
+      'pageYOffset',
+      'clientWidth']
+
+    const staticLiteralToIndex = new Map(staticLiterals.map((lit, idx) => [lit, idx]));
+}
+```
+
+После, мы изменяем AST первоначальной программы, записывая **staticLiterals** массив в её начало. Вместо того, чтобы хранить сырые значения елементов масиива, мы закодируем их с помощью base64.
+```js
+refactor.query('Script')[0].statements.unshift(new Shift.VariableDeclarationStatement({
+    declaration: new Shift.VariableDeclaration({
+        kind: 'const',
+        declarators: [new Shift.VariableDeclarator({
+            binding: new Shift.BindingIdentifier({
+                name: 'members'
+            }),
+            init: new Shift.ArrayExpression({
+                elements: staticLiterals.map((lit) => {
+                    if (typeof lit === 'string') {
+                        return new Shift.LiteralStringExpression({
+                            value: new Buffer.from(lit).toString('base64')
+                        })
+                    } else if (typeof lit === 'number') {
+                        return new Shift.LiteralNumericExpression({
+                            value: lit
+                        })
+                    }
+
+                })
+            })
+        })]
+    })
+}));
+```
+
+Мы так же вставим функии вызывающие **indexToLiteral** в AST нашего скрипта. Её задача, используя индекс в массиве и массив, вернуть элемент по данному индексу. <abbr title="Since">Поскольку</abbr> мы закодировали строки в нашем массиве используя base64, нужно пребразовать их обратно используя функцию **atob**. Хотя это <abbr title="not really improve the resilience ">не очень сложная обфускация</abbr>, я просто показал это как пример и теперь вы можете реальзовать более сложные пребразования <abbr title="on your own">самостоятельно</abbr>. 
+
+```js
+const indexToStr = `
+    function indexToLiteral(index, arr) {
+        if (typeof arr[index] ==='string') return atob(arr[index]);
+            return arr[index];
+    }`;
+
+// Вместо создания функции с использованием класса Shift, как мы
+// сделали для предыдущего фрагмента кода, здесь мы определяем функцию как строку
+// и после преобразует так же в AST и встраивает в AST, которое мы преобразуем
+const indexToStrAst = parseScript(indexToStr).statements[0];
+refactor.query('Script')[0].statements.unshift(indexToStrAst);
+```
+
+Наконец, мы применяем различные преобразования кода:
+
+```js
+// Короткая функция, помогающая нам легче создавать выражения вызовов
+function buildIndexToLitCallExpression(index) {
+        return new Shift.CallExpression({
+            callee: new Shift.IdentifierExpression({
+                name: 'indexToLiteral'
+            }),
+            arguments: [
+                new Shift.LiteralNumericExpression({
+                    value: index
+                }),
+                new Shift.IdentifierExpression({
+                    name: 'members'
+                })
+
+            ]
+        })
+    }
+
+// Преобразование строк и чисел, используемых в аргументах функций
+refactor.query('CallExpression')
+        .forEach(callExpression => {
+            callExpression.arguments.forEach((argument, idx) => {
+                if (argument.type === 'LiteralStringExpression' || argument.type === 'LiteralNumericExpression') {
+                    callExpression.arguments[idx] = buildIndexToLitCallExpression(staticLiteralToIndex.get(argument.value))
+                }
+            });
+        });
+
+// Присвоения вида myobj.prop = val; => myobj[func(idx, arr)] = val;
+refactor.query('AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]')
+    .forEach(assignmentExpression => {
+        assignmentExpression.binding = new Shift.ComputedMemberAssignmentTarget({
+            object:  assignmentExpression.binding.object,
+            expression: buildIndexToLitCallExpression(staticLiteralToIndex.get(assignmentExpression.binding.property))
+        });
+    });
+
+// Строки и числа в оператораях-выражениях
+refactor.query(':matches(ExpressionStatement[expression.expression.type="LiteralStringExpression"], ' +
+    'ExpressionStatement[expression.expression.type="LiteralNumericExpression"])')
+    .forEach((exp) => {
+        exp.expression.expression = buildIndexToLitCallExpression(staticLiteralToIndex.get(exp.expression.expression.value))
+    });
+
+// Строки и числа в объявлении переменных
+refactor.query('VariableDeclarationStatement')
+    .forEach((exp) => {
+        exp.declaration.declarators.forEach((declarator) => {
+            if (declarator.init.type === 'LiteralNumericExpression' || declarator.init.type === 'LiteralStringExpression') {
+                declarator.init = buildIndexToLitCallExpression(staticLiteralToIndex.get(declarator.init.value))
+            }
+        })
+    });
+
+// Сделать доступ к полям и методам обхекта динамическим
+refactor.query('StaticMemberExpression')
+    .forEach((exp) => {
+        exp.type = 'ComputedMemberExpression';
+        exp.expression = buildIndexToLitCallExpression(staticLiteralToIndex.get(exp.property));
+        delete exp.property;
+    });
+
+// Генерируем код на из получившегося AST дерева и сохраняем его в файл
+fs.writeFileSync(dest, refactor.print(), 'utf8');
+```
+
+## Добавлени нашего обфускатора в Gulp
+Для полной автоматизации обфускаии, создадим новую задачу в **gulpfile.js**.
+
+```js
+// gulpfile.js
+const obfuscator = require('./src/obfuscator.js');
+
+function obfuscateFPScript(done) {
+    obfuscator.obfuscate('./dist/simpleFingerprintCollector.js', './dist/obfuscated.js');
+    done();
+}
+
+exports.obfuscate = obfuscateFPScript;
+```
+
+Таким образом, для запуска обфускации мы можем выполнить команду `gulp obfuscate`, которая создаст файл с именем **obfuscated.js** в диретории **dist/**.
+
+## Изменение имени переменных
 
 
 
 ---
-consists - заключается
-as well as - так же как
-either - тоже, любой
+
+consists - заключается  
+as well as - так же как  
+either - тоже, любой  
+statements - оператор, заявление  
+enables - позволяет  
+Thus, ... - таким образом  
+given - данный, данность  
+resilience - устойчивость, упругость  
+on your own - самостоятельно  
+Assignments - Присвоения  
 
 Оригинал: [A simple homemade JavaScript obfuscator](https://antoinevastel.com/javascript/2019/09/04/home-made-obfuscator.html)
