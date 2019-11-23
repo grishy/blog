@@ -15,14 +15,14 @@ myObfuscator/
     test/
 ```
 
-Директория **src/** будет содержать исходный JavaScript код, в то время как **dist/** директория будет содержать трансплантированные или обфусцированные версии этих файлов. Наконец, в директории **test/** будет лежать файлы, проверяющий что код работает после обфусцирования.
+Директория **src/** будет содержать исходный JavaScript код, в то время как **dist/** директория будет содержать транспилируемые или обфусцированные версии этих файлов. Наконец, в директории **test/** будет лежать файлы, проверяющий что код работает после обфусцирования.
 
 В этом посте я попытаюсь привести полный рабочий пример. Тем не менее, если вы просто заинтересованы только реализацией обфускатора, можете пропустить следующий раздел.
 
 ## Fingerprinting script
 
 Для лучшего понимая применения обфускации, используем маленький скрипт для идентификации, как пример для данной статьи. Никаких знаний об этой технологии не требуется, чтобы понять оставшуюся часть поста. Тем не менее, я коротко опишу, что это за технология.
-Browser fingerprinting это техника, которая собирает набор атрибутов, относящихся к пользовательскому устройству и браузеру. Чтобы собрать эти атрибуты, мы можем использовать HTTP заголовки, отправляемые браузером и так же JavaScript APIs. В этом посте, мы будем использовать только JavaScript API. Полученный отпечаток можно использовать как для отслеживания пользователя, там и для защиты от ботов и сканеров (crawlers). В контексте безопасности fingerprinting'a компании часто хотя обфусцировать скрипт сбора информации, чтобы атакующим было сложнее узнать собранные атрибуты. Действительно, поскольку JavaScript выполняется в браузере, его необходимо отправить на компьютер пользователя. Таким образом, злоумышленники могут посмотреть на содержание скрипта, отсюда и необходимость обфускации. Тем не менее, следует соблюдать осторожность , поскольку оно не идеально. При необходимом времени и усилия, злоумышленники могут разобрать скрипт.
+Browser fingerprinting это техника, которая собирает набор атрибутов, относящихся к пользовательскому устройству и браузеру. Чтобы собрать эти атрибуты, мы можем использовать HTTP заголовки, отправляемые браузером и так же JavaScript APIs. В этом посте, мы будем использовать только JavaScript API. Полученный отпечаток можно использовать как для отслеживания пользователя, там и для защиты от ботов и сканеров (crawlers). В контексте безопасности fingerprinting'a компании часто хотя обфусцировать скрипт сбора информации, чтобы атакующим было сложнее узнать собранные атрибуты. Действительно, поскольку JavaScript выполняется в браузере, его необходимо отправить на компьютер пользователя. Таким образом, злоумышленники могут посмотреть на содержание скрипта, отсюда и необходимость обфускации. Тем не менее, следует соблюдать осторожность, поскольку оно не идеально. При необходимом времени и усилия, злоумышленники могут разобрать скрипт.
 
 Мы используем простой скрипт с несколькими атрибутами, чтобы его было легче понять. В каталоге **src/** мы создаем файл с именем **SimpleFingerprintCollector.js**.
 
@@ -164,7 +164,7 @@ function concatScripts() {
 exports.concat = concatScripts;
 ```
 
-Из корня проекта вы можете собрать не обфусцированную версию скрипта выполнив `gulp concat` в терминале. Это сгенерирует **simpleFingerprintCollector.js** в папке **dist/**. В файле будет находится наш класс и несколько вариантов взятия атрибутов (canvas, платформа).
+Из корня проекта вы можете собрать не обфусцированную версию скрипта выполнив `gulp concat` в терминале. Это сгенерирует **simpleFingerprintCollector.js** в папке **dist/**. В файле будут находится наш класс и несколько вариантов взятия атрибутов (canvas, платформа).
 ```javascript
 // dist/simpleFingerprintCollector.js
 
@@ -193,7 +193,7 @@ fingerprintCollector.registerTest('screenResolution', () => {
 ```
 
 ## Обфускация скрипта
-Сейчас, когда у нас есть fingerprinting скрипт, мы можем обфусцировать его. Существует несколько различных подходов, простые или более сложные и эффективные и не очень. Вы можете почитать об этом более подробно в [другой статье](https://antoinevastel.com/obfuscation/2017/12/06/presentation-obfuscation.html)(англ.), где я рассказывают о основных техниках обфускации. В данном посте, мы будем использовать простую технику обфускации, которая <abbr title="consists">заключается</abbr> в замене статических строк и чисел, <abbr title="as well as">а так же</abbr> к свойствам и методам объекта с помощью вызова функции, чтобы сделать его менее читаемым. Если вы хотите нечто похожее, но production-ready решение, вы можете использовать [obfuscator.io](https://obfuscator.io/) или связанный с ним npm пакет. Техника, представленная в этом после довольно похожа на **String Array** опцию в их обфускаторе.
+Сейчас, когда у нас есть fingerprinting скрипт, мы можем обфусцировать его. Существует несколько различных подходов, простые или более сложные и эффективные и не очень. Вы можете почитать об этом более подробно в [другой статье](https://antoinevastel.com/obfuscation/2017/12/06/presentation-obfuscation.html)(англ.), где я описал базовые техники обфускации. В данном посте, мы будем использовать простую технику обфускации, которая <abbr title="consists">заключается</abbr> в замене статических строк и чисел, <abbr title="as well as">а так же</abbr> к свойствам и методам объекта с помощью вызова функции, чтобы сделать его менее читаемым. Если вы хотите нечто похожее, но production-ready решение, вы можете использовать [obfuscator.io](https://obfuscator.io/) или связанный с ним npm пакет. Техника, представленная в этом после довольно похожа на **String Array** опцию в их обфускаторе.
 
 <abbr title="The way">То</abbr>, как я реализую обфускато, явно не оптимально. Более того, я <abbr title="not consistent">не использую один стиль</abbr> по всему коду. Идея состоит в том, чтобы показать различные пути манипулирования кодом и [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree). Я использую библиотеку [shift](https://shift-ast.org/), но можно использовать и другие. Например [Esprima](https://esprima.org/).
 
@@ -219,7 +219,7 @@ const Shift = require('shift-ast');
 const fs = require('fs');
 ```
 
-Для обфускации скрипта будем манипулировать с его AST (Абстрактное Синтаксическое Дерево), дневовыдным представлением кода. Если вы хотите посмотреть как оно выглядит в UI, можно использовать [AST Explorer](https://astexplorer.net/).
+Для обфускации скрипта будем манипулировать с его AST (Абстрактное Синтаксическое Дерево), древовидным представлением кода. Если вы хотите посмотреть как оно выглядит в UI, можно использовать [AST Explorer](https://astexplorer.net/).
 
 Затем мы создаем функцию `obfuscateFPScript`, которая принимает в качестве входных аргументов путь к файлу для обфускации и путь для сохранения результата преобразования. В этой функции мы начинаем собирать различные строки, числа и свойства объекта для обфускации.
 ```js
@@ -236,7 +236,7 @@ function obfuscateFPScript(src, dest) {
     // Приведённые ниже 5 операторов извлекают различные строки, числа и свойства объектов
     // которые мы хотим обфусцировать
     // refactor.query позволяет запрашивать определённые узлы AST используя синтаксис, похожий на CSS
-    // Таким образом, напрмиер refactor.query('LiteralStringExpression') вернёт все LiteralStringExpression
+    // Таким образом, например refactor.query('LiteralStringExpression') вернёт все LiteralStringExpression
     // в программе.
     const stringsProgram = Array.from(new Set(refactor.query('LiteralStringExpression').map(v => v.value)));
     const numbersProgram = Array.from(new Set(refactor.query('LiteralNumericExpression').map(v => v.value)));
@@ -268,7 +268,7 @@ function obfuscateFPScript(src, dest) {
 }
 ```
 
-После, мы изменяем AST первоначальной программы, записывая **staticLiterals** массив в её начало. Вместо того, чтобы хранить сырые значения елементов масиива, мы закодируем их с помощью base64.
+После, мы изменяем AST первоначальной программы, записывая **staticLiterals** массив в её начало. Вместо того, чтобы хранить сырые значения элементов масиива, мы закодируем их с помощью base64.
 ```js
 refactor.query('Script')[0].statements.unshift(new Shift.VariableDeclarationStatement({
     declaration: new Shift.VariableDeclaration({
@@ -296,7 +296,7 @@ refactor.query('Script')[0].statements.unshift(new Shift.VariableDeclarationStat
 }));
 ```
 
-Мы так же вставим функии вызывающие **indexToLiteral** в AST нашего скрипта. Её задача, используя индекс в массиве и массив, вернуть элемент по данному индексу. <abbr title="Since">Поскольку</abbr> мы закодировали строки в нашем массиве используя base64, нужно пребразовать их обратно используя функцию **atob**. Хотя это <abbr title="not really improve the resilience ">не очень сложная обфускация</abbr>, я просто показал это как пример и теперь вы можете реальзовать более сложные пребразования <abbr title="on your own">самостоятельно</abbr>. 
+Мы так же вставим функции вызывающие **indexToLiteral** в AST нашего скрипта. Её задача, используя индекс в массиве и массив, вернуть элемент по данному индексу. <abbr title="Since">Поскольку</abbr> мы закодировали строки в нашем массиве используя base64, нужно преобразовать их обратно используя функцию **atob**. Хотя это <abbr title="not really improve the resilience ">не очень сложная обфускация</abbr>, я просто показал это как пример и теперь вы можете реализовать более сложные преобразования <abbr title="on your own">самостоятельно</abbr>. 
 
 ```js
 const indexToStr = `
@@ -369,7 +369,7 @@ refactor.query('VariableDeclarationStatement')
         })
     });
 
-// Сделать доступ к полям и методам обхекта динамическим
+// Сделать доступ к полям и методам объекта динамическим
 refactor.query('StaticMemberExpression')
     .forEach((exp) => {
         exp.type = 'ComputedMemberExpression';
@@ -381,7 +381,7 @@ refactor.query('StaticMemberExpression')
 fs.writeFileSync(dest, refactor.print(), 'utf8');
 ```
 
-## Добавлени нашего обфускатора в Gulp
+## Добавлене нашего обфускатора в Gulp
 Для полной автоматизации обфускаии, создадим новую задачу в **gulpfile.js**.
 
 ```js
@@ -396,11 +396,151 @@ function obfuscateFPScript(done) {
 exports.obfuscate = obfuscateFPScript;
 ```
 
-Таким образом, для запуска обфускации мы можем выполнить команду `gulp obfuscate`, которая создаст файл с именем **obfuscated.js** в диретории **dist/**.
+Таким образом, для запуска обфускации мы можем выполнить команду `gulp obfuscate`, которая создаст файл с именем **obfuscated.js** в директории **dist/**.
 
 ## Изменение имени переменных
 
+На это этапе наш обфускатор все ещё содержит некоторые переменные с  <abbr title="meaningful">осмысленными</abbr> именами. 
+Вместо переименования переменных самостоятельно, я покажу как мы можем использовать **gulp-terser** для переименования переменных и таким образом уменьшить кол-во информации, доступное для злоумышленника. 
 
+```js
+const terser = require('gulp-terser');
+const rename = require('gulp-rename');
+
+// Создадим новую задачу
+function compress () {
+    // Как входные параметры, передадим обфусцируемый скрипт
+    return src('dist/obfuscated.js')
+        .pipe(terser({
+            compress: {
+                booleans: false,
+                drop_console: true,
+                evaluate: false,
+                keep_classnames: false
+            },
+            mangle: {
+                toplevel: true,
+                reserved: ['fingerprintCollector', 'collect'] // мы не должны переименовывать переменные fingerprintCollector, collect
+                // так как это нужно для получения доступа из других скриптов, которым нужно знать их имя
+            },
+            keep_fnames: false,
+            output: {
+                beautify: false,
+                preamble: '/* You superb copyright here */' // Вы так же можете добавить сообщение или копирайты в заголовок
+                // вашего скрипта
+            }
+        }))
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(dest('dist/')) // это создаст новый файл **dist/obfuscated.min.js**
+}
+
+exports.compress = compress;
+
+// Мы определяем новую gulp задачу с именем build
+// Эта задача вызывает последовательно 3 другие задачи, определённые выше в посте
+exports.build = series(concatScripts, obfuscateFPScript, compress);
+```
+
+## Тестирование нашего обфусцированного кода
+
+При создании собственного обфускатора или при применении преобразования к коду можно создать код, который выглядит рабочим, но работает не так как ожидалось. Таким образом важно иметь тесты для автоматической проверки, работает ли преобразованный код как оригинальный. Для тестирования нашего кода мы используем библиотеки *Chai* и *Puppeteer*. Puppeteer позволяет легко автоматизировать проверку работы в браузере. 
+
+В **test/** директории мы создадим простой HTML файл, который включает наш обфусцируемый код.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src='../dist/obfuscated.min.js'></script>
+</body>
+</html>
+```
+
+Затем создаем тестовый файл **test.js**. Он включает различные unit тесты, которые проверяют, работают ли наш код как ожидалось.
+В нашем примере я создам только 3 простых теста для демонстрации, как это работает.
+```js
+const {expect} = require('chai');
+const puppeteer = require('puppeteer');
+const path = require('path');
+
+describe('Fingerprinting on Chrome Headless', function () {
+    let browser, page;
+    let fingerprint;
+
+    before(async function () {
+        // Код выполняемый до начала работы тестов
+
+        // мы создаем экземпляр puppeteer
+        // он позволяет управлять Chrome headless
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
+
+        // мы загружаем HTML страницу, которая находится в этой же директории
+        await page.goto('file://' + path.resolve(__dirname, 'test.html'), {
+            waitUntil: 'load'
+        });
+
+        // Выполняем код в контексте нашей HTML страницы, чтобы получить результат работы fingerprint скрипта
+        fingerprint = await page.evaluate(async () => {
+            try {
+                const fingerprint = await fingerprintCollector.collect();
+                return fingerprint;
+            } catch (e) {
+                return e.message;
+            }
+        });
+    });
+
+    after(async function () {
+        // Когда все тесты выполнены, мы закрываем страницу и браузер
+        await page.close();
+        await browser.close();
+    });
+
+    // Создадим 3 unit теста
+    it('resOverflow should be an object', () => {
+        expect(typeof fingerprint.resOverflow).to.equal('object');
+    });
+
+    it('screen should have 16 properties', () => {
+        const isScreenValid = fingerprint.screenResolution !== undefined && Object.keys(fingerprint.screenResolution ).length === 16;
+        expect(isScreenValid).to.be.true;
+    });
+
+    it('adblock should be false', () => {
+        expect(fingerprint.adblock).to.be.false;
+    });
+
+});
+```
+
+Таким образом сейчас у нас есть обфусцированный fingerprinting скрипт, который должен работать <abbr title="properly">правильно</abbr> в браузере. Вы можете найти [полный код на GitHub](https://github.com/antoinevastel/simpleJSObfuscator). <abbr title="snippet">Фрагмент</abbr> внизу показывает пример обфусцированного кода для функции, отвечающий за сбор данных с canvas.
+```js
+let e = {};
+const Z = document[t(69, c)](t(5, c));
+Z[t(101, c)] = t(27, c), Z[t(102, c)] = t(28, c), Z[t(75, c)][t(50, c)] = t(6, c);
+const n = Z[t(76, c)](t(7, c));
+try {
+    n[t(77, c)](t(26, c), t(26, c), t(29, c), t(29, c)), n[t(77, c)](t(30, c), t(30, c), t(31, c), t(31, c)), e[t(51, c)] = n[t(78, c)](t(32, c), t(32, c), t(8, c))
+} catch (Z) {
+    e[t(51, c)] = t(9, c)
+}
+try {
+    n[t(52, c)] = t(10, c), n[t(53, c)] = t(11, c), n[t(79, c)](t(33, c), t(34, c), t(35, c), t(36, c)), n[t(53, c)] = t(12, c), n[t(54, c)] = t(13, c), n[t(80, c)](t(14, c), t(30, c), t(37, c)), n[t(53, c)] = t(15, c), n[t(54, c)] = t(16, c), n[t(80, c)](t(14, c), t(38, c), t(39, c)), n[t(55, c)] = t(17, c), n[t(53, c)] = t(18, c), n[t(81, c)](), n[t(82, c)](t(40, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0), n[t(84, c)](), n[t(85, c)](), n[t(53, c)] = t(19, c), n[t(81, c)](), n[t(82, c)](t(41, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0), n[t(84, c)](), n[t(85, c)](), n[t(53, c)] = t(20, c), n[t(81, c)](), n[t(82, c)](t(42, c), t(41, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0), n[t(84, c)](), n[t(85, c)](), n[t(53, c)] = t(18, c), n[t(82, c)](t(42, c), t(42, c), t(42, c), t(26, c), 2 * Math[t(83, c)], !0), n[t(82, c)](t(42, c), t(42, c), t(43, c), t(26, c), 2 * Math[t(83, c)], !0), n[t(85, c)](t(8, c)), e[t(56, c)] = Z[t(86, c)]()
+} catch (Z) {
+    e[t(56, c)] = t(9, c)
+}
+return e
+```
+
+Хотя это выглядит полностью не читаемым, этот тип обфускаторов может быть легко reverse engineered. Чтобы узнать больше об этом, можете посмотреть [Jarrod Overson’s Youtube канал](https://www.youtube.com/channel/UCJbZGfomrHtwpdjrARoMVaA/videos).  
+
+В [следующей части](https://antoinevastel.com/javascript/2019/09/09/improving-obfuscator.html), я добавил больше трансформаций в наш обфускатор.
+
+Оригинал: [A simple homemade JavaScript obfuscator](https://antoinevastel.com/javascript/2019/09/04/home-made-obfuscator.html)
 
 ---
 
@@ -414,5 +554,9 @@ given - данный, данность
 resilience - устойчивость, упругость  
 on your own - самостоятельно  
 Assignments - Присвоения  
-
-Оригинал: [A simple homemade JavaScript obfuscator](https://antoinevastel.com/javascript/2019/09/04/home-made-obfuscator.html)
+meaningful - осмысленно  
+sequentially - последовательно  
+instance - экземпляр  
+obtain - получать, добывать  
+Once - однажды, когда
+properly - должным образом, правильно
