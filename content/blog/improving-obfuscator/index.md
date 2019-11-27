@@ -56,6 +56,8 @@ const staticLiterals = stringsProgram.concat(numbersProgram, bindingProperties, 
 
 // Учитывая строку для разделения и максимальное количество разделений,
 // возвращает массив подстрок, случайно разделённых
+// splitStringLiteral("1234567890", 5);
+// ["1", "23", "456", "7890"]
 function splitStringLiteral(lit, maxNumSplits) {
     maxNumSplits = Math.min(maxNumSplits, lit.length);
     const numSplits = Math.max(1, Math.floor(maxNumSplits*Math.random()));
@@ -94,7 +96,7 @@ const staticLiteralToChunks = new Map(staticLiterals.map(lit => {
     }
 
     subLit.forEach(v => subLiterals.add(v));
-    return [lit, subLit]; // we don't split numbers for the moment
+    return [lit, subLit]; // мы не разбиваем числа, пока...
 }));
 
 // Создаем массив, содержащий все подстроки
@@ -110,7 +112,7 @@ staticLiteralToChunks.forEach((v, k) => {
 ```
 Таким образом, доступ к свойству, например `myobj.property = 'myval'` будет иметь следующую форму в зависимости от количества разбиений: `myobj[f(index1, arr) + ... + f(indexN, arr)] = f(indexX, arr) + ... + f(indexZ, arr);`
 
-
+### Меняем алфавит в base64
 
 
 Оригинал: [Improving our homemade JavaScript obfuscator](https://antoinevastel.com/javascript/2019/09/09/improving-obfuscator.html) 
