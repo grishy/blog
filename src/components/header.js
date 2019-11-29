@@ -26,16 +26,14 @@ class HamburgerButton extends React.Component {
           {({ x, y }) => (
             <g strokeWidth="14" strokeLinecap="round" strokeLinejoin="round">
               <line
-                transform={`translate(${x * 12}, ${x * -7}) rotate(${x *
-                  45}, 7, 26)`}
+                transform={`translate(${x * 12}, ${x * -7}) rotate(${x * 45}, 7, 26)`}
                 x1="7"
                 y1="26"
                 x2="89"
                 y2="26"
               />
               <line
-                transform={`translate(${x * 12}, ${x * 7}) rotate(${x *
-                  -45}, 7, 70)`}
+                transform={`translate(${x * 12}, ${x * 7}) rotate(${x * -45}, 7, 70)`}
                 x1="7"
                 y1="70"
                 x2="89"

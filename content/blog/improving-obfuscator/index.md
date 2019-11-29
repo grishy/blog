@@ -188,18 +188,18 @@ refactor.query('Script')[0].statements.unshift(alphabetElement);
 В прошлой версии мы использовали встроенную функцию **atob** для декодирования строк, которые были обфусцированы base64. <abbr title="Nevertheless">Тем не менее</abbr>, **atob** не может использовать другие алфавиты. Поэтому мы добавили нашу собственную функцию декодирования, с использованием нашего алфавита.
 ```js
 const decodeBody = `function decode64(input, keyStr) {
-       ...
-       // Удалить все символы, которые не A-Z, a-z, 0-9, +, /, or =
-       input = input.replace(/[^A-Za-z0-9\\+\\/\\=]/g, "");
-       do {
-          enc1 = keyStr.indexOf(input.charAt(i++));
-          enc2 = keyStr.indexOf(input.charAt(i++));
-          enc3 = keyStr.indexOf(input.charAt(i++));
-          enc4 = keyStr.indexOf(input.charAt(i++));
-          ...
-       } while (i < input.length);
-       return output;
-    }`;
+    ...
+    // Удалить все символы, которые не A-Z, a-z, 0-9, +, /, or =
+    input = input.replace(/[^A-Za-z0-9\\+\\/\\=]/g, "");
+    do {
+        enc1 = keyStr.indexOf(input.charAt(i++));
+        enc2 = keyStr.indexOf(input.charAt(i++));
+        enc3 = keyStr.indexOf(input.charAt(i++));
+        enc4 = keyStr.indexOf(input.charAt(i++));
+        ...
+    } while (i < input.length);
+    return output;
+}`;
 
 // Добавляем в наш скрипт
 const decodeBodyAst = parseScript(decodeBody).statements[0];

@@ -10,65 +10,19 @@ import "../global.scss"
 
 class Cover extends React.Component {
   render() {
-    const title = this.props.title
+    const { coverSrc, title, date } = this.props
 
     return (
-      <section className={style.cover}>
-        <div
-          style={{
-            backgroundImage: `url(${this.props.coverSrc})`,
-          }}
-          className={style.coverBackground}
-        ></div>
+      <section
+        style={{
+          backgroundImage: `url(${coverSrc})`,
+        }}
+        className={style.cover}>
         <div className={style.coverGradient}></div>
-
-        <div
-          className={classNames({
-            container: true,
-            [style.coverContent]: true,
-          })}
-        >
-          <h1 className={style.coverTitle}>{title}</h1>
-        </div>
-      </section>
-    )
-  }
-}
-
-class MetaBar extends React.Component {
-  render() {
-    return (
-      <section className={style.metaBar}>
-        <div className={style.metaBarContent}>
-          <div className={style.metaBarAuthor}>
-            <a
-              target={"_blank"}
-              href={
-                "https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953"
-              }
-              className={style.metaBarAuthorAvatar}
-            >
-              <img
-                src={
-                  "https://grishy.ru/image/threads-in-node-10-5-0-a-practical-intro/avatar.jpg"
-                }
-              />
-            </a>
-            <div className={style.metaBarAuthorInfo}>
-              <span>Оригинал</span>
-              <a
-                target={"_blank"}
-                href={
-                  "https://medium.com/dailyjs/threads-in-node-10-5-0-a-practical-intro-3b85a0a3c953"
-                }
-              >
-                Fernando Doglio
-              </a>
-            </div>
-          </div>
-
-          <div className={style.metaBarDate}>
-            <time datetime={"2019-01-01T00:00:00Z"}>01 ЯНВАРЯ 2019</time>
+        <div className={style.coverWrapper}>
+          <div className={style.coverBlock}>
+            <h1 className={style.coverBlock_title}>{title}</h1>
+            <p className={style.coverBlock_date}>{date}</p>
           </div>
         </div>
       </section>
@@ -129,6 +83,7 @@ class BlogPostTemplate extends React.Component {
     const cover = {
       coverSrc,
       title: post.frontmatter.title,
+      date: post.frontmatter.date,
     }
 
     return (
@@ -139,10 +94,8 @@ class BlogPostTemplate extends React.Component {
         />
         <Header white={true} />
         <Cover {...cover} />
-        {/* <MetaBar /> */}
         <section
           className={style.post}
-          
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <Footer />

@@ -1,16 +1,15 @@
 @import "../var.scss";
 
-$title-size: 2.7rem;
-$item-size: 1.05rem;
+$title-size: 2.5rem;
+$item-size: 1rem;
 
 $header-bg-hover: $yellow;
 
 $item-padding-vertically: $item-size / 4;
 $item-padding-horizontally: $item-size * 0.75;
-$header-top: $title-size / 2;
 
 $toggle-padding: 0.5rem;
-$toggle-size: 2.8rem + $toggle-padding;
+$toggle-size: 2.8rem+$toggle-padding;
 
 .header {
   position: absolute;
@@ -21,6 +20,7 @@ $toggle-size: 2.8rem + $toggle-padding;
   padding-top: 1.35rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -32,7 +32,7 @@ $toggle-size: 2.8rem + $toggle-padding;
 }
 
 .title:hover {
-  color: #000;
+  color: #404040;
 }
 
 .navigation {
@@ -40,7 +40,6 @@ $toggle-size: 2.8rem + $toggle-padding;
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-top: ($title-size - $item-size + $item-padding-vertically) / 2;
 
   li {
     display: inline-block;
@@ -63,7 +62,7 @@ $toggle-size: 2.8rem + $toggle-padding;
   }
 }
 
-.while .navigation > li > a,
+.while .navigation>li>a,
 .while .title {
   color: #fff;
 }
@@ -72,9 +71,13 @@ $toggle-size: 2.8rem + $toggle-padding;
   fill: #fff;
 }
 
-.while .navigation > li:focus > a,
-.while .navigation > li:hover > a {
+.while .navigation>li:focus>a,
+.while .navigation>li:hover>a {
   color: #000;
+}
+
+.while .navigationToggle {
+  stroke: #fff;
 }
 
 .navigationToggle {
@@ -127,8 +130,8 @@ $toggle-size: 2.8rem + $toggle-padding;
     display: block;
   }
 
-  .navigation > li:focus > a,
-  .navigation > li:hover > a {
+  .navigation>li:focus>a,
+  .navigation>li:hover>a {
     color: #000;
   }
 
