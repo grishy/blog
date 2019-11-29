@@ -95,7 +95,10 @@ class BlogPostTemplate extends React.Component {
         <Header white={true} />
         <Cover {...cover} />
         <section
-          className={style.post}
+          className={classNames({
+            "container": true,
+            [style.post]: true,
+          })}
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <Footer />
