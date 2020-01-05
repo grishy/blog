@@ -9,7 +9,7 @@ $item-padding-vertically: $item-size / 4;
 $item-padding-horizontally: $item-size * 0.75;
 
 $toggle-padding: 0.5rem;
-$toggle-size: 2.8rem+$toggle-padding;
+$toggle-size: 2.8rem + $toggle-padding;
 
 .header {
   position: absolute;
@@ -62,7 +62,7 @@ $toggle-size: 2.8rem+$toggle-padding;
   }
 }
 
-.while .navigation>li>a,
+.while .navigation > li > a,
 .while .title {
   color: #fff;
 }
@@ -71,8 +71,8 @@ $toggle-size: 2.8rem+$toggle-padding;
   fill: #fff;
 }
 
-.while .navigation>li:focus>a,
-.while .navigation>li:hover>a {
+.while .navigation > li:focus > a,
+.while .navigation > li:hover > a {
   color: #000;
 }
 
@@ -130,8 +130,8 @@ $toggle-size: 2.8rem+$toggle-padding;
     display: block;
   }
 
-  .navigation>li:focus>a,
-  .navigation>li:hover>a {
+  .navigation > li:focus > a,
+  .navigation > li:hover > a {
     color: #000;
   }
 

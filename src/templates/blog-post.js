@@ -1,23 +1,24 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import classNames from "classnames/bind"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import classNames from "classnames/bind";
 
-import Header from "../components/header"
-import Footer from "../components/footer"
-import SEO from "../components/seo"
-import style from "./blog-post.module.scss"
-import "../global.scss"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import SEO from "../components/seo";
+import style from "./blog-post.module.scss";
+import "../global.scss";
 
 class Cover extends React.Component {
   render() {
-    const { coverSrc, title, date } = this.props
+    const { coverSrc, title, date } = this.props;
 
     return (
       <section
         style={{
-          backgroundImage: `url(${coverSrc})`,
+          backgroundImage: `url(${coverSrc})`
         }}
-        className={style.cover}>
+        className={style.cover}
+      >
         <div className={style.coverGradient}></div>
         <div className={style.coverWrapper}>
           <div className={style.coverBlock}>
@@ -26,17 +27,18 @@ class Cover extends React.Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const post = this.props.data.markdownRemark;
+    const siteTitle = this.props.data.site.siteMetadata.title;
+    const { previous, next } = this.props.pageContext;
     const coverSrc =
-      post.frontmatter.cover && post.frontmatter.cover.childImageSharp.fluid.src
+      post.frontmatter.cover &&
+      post.frontmatter.cover.childImageSharp.fluid.src;
 
     //  <Layout location={this.props.location} title={siteTitle} whiteHeader={true}>
     //       <SEO
@@ -83,8 +85,8 @@ class BlogPostTemplate extends React.Component {
     const cover = {
       coverSrc,
       title: post.frontmatter.title,
-      date: post.frontmatter.date,
-    }
+      date: post.frontmatter.date
+    };
 
     return (
       <React.Fragment>
@@ -96,18 +98,18 @@ class BlogPostTemplate extends React.Component {
         <Cover {...cover} />
         <section
           className={classNames({
-            "container": true,
-            [style.post]: true,
+            container: true,
+            [style.post]: true
           })}
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <Footer />
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -135,4 +137,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

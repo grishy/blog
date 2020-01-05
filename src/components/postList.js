@@ -1,12 +1,12 @@
-import React from "react"
-import classNames from "classnames/bind"
-import { Link } from "gatsby"
+import React from "react";
+import classNames from "classnames/bind";
+import { Link } from "gatsby";
 
-import style from "./postList.module.scss"
+import style from "./postList.module.scss";
 
 class PostList extends React.Component {
   render() {
-    const posts = this.props.posts
+    const posts = this.props.posts;
     // <div>
     //   <h3 style={{}}>
     //     <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
@@ -25,18 +25,18 @@ class PostList extends React.Component {
       <main
         className={classNames({
           container: true,
-          [style.list]: true,
+          [style.list]: true
         })}
       >
         {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.frontmatter.title || node.fields.slug;
           const thumbnail =
             node.frontmatter.thumbnail &&
-            node.frontmatter.thumbnail.childImageSharp.fluid.src
+            node.frontmatter.thumbnail.childImageSharp.fluid.src;
 
           const thumbnailStyle = {
-            backgroundImage: `url(${thumbnail})`,
-          }
+            backgroundImage: `url(${thumbnail})`
+          };
           return (
             <article key={node.fields.slug} className={style.article}>
               <Link
@@ -49,16 +49,16 @@ class PostList extends React.Component {
                 <Link to={node.fields.slug}>{title}</Link>
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
+                    __html: node.frontmatter.description || node.excerpt
                   }}
                 />
               </div>
             </article>
-          )
+          );
         })}
       </main>
-    )
+    );
   }
 }
 
-export default PostList
+export default PostList;

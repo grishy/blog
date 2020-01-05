@@ -1,8 +1,8 @@
-import React from "react"
+import React from "react";
 // import classNames from "classnames/bind"
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
-import style from "./footer.module.scss"
+import style from "./footer.module.scss";
 
 class Footer extends React.Component {
   render() {
@@ -90,7 +90,8 @@ class Footer extends React.Component {
         </ul>
 
         <p className={style.text}>
-          Copyright © <a href="dfsdf">Grishy </a> {new Date().getFullYear()}. <br></br> with
+          Copyright © <a href="dfsdf">Grishy </a> {new Date().getFullYear()}.{" "}
+          <br></br> with
           <span className={style.heart_wrapper}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +105,8 @@ class Footer extends React.Component {
           </span>
         </p>
       </footer>
-    )
+    );
   }
 }
 
-export default Footer
+export default Footer;

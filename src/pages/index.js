@@ -1,17 +1,17 @@
-import React, { Fragment } from "react"
-import { graphql } from "gatsby"
+import React, { Fragment } from "react";
+import { graphql } from "gatsby";
 
-import PostList from "../components/postList"
-import Header from "../components/header"
-import Footer from "../components/footer"
-import SEO from "../components/seo"
-import "../global.scss"
+import PostList from "../components/postList";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import SEO from "../components/seo";
+import "../global.scss";
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMarkdownRemark.edges;
 
     return (
       <div className="wrapper">
@@ -25,11 +25,11 @@ class BlogIndex extends React.Component {
         ></Layout> */}
         <Footer />
       </div>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -61,4 +61,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

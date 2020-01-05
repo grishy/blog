@@ -1,10 +1,10 @@
-import React from "react"
-import classNames from "classnames/bind"
-import { Link } from "gatsby"
-import { Motion, spring, presets } from "react-motion"
-import { RemoveScrollBar } from "react-remove-scroll-bar"
+import React from "react";
+import classNames from "classnames/bind";
+import { Link } from "gatsby";
+import { Motion, spring, presets } from "react-motion";
+import { RemoveScrollBar } from "react-remove-scroll-bar";
 
-import style from "./header.module.scss"
+import style from "./header.module.scss";
 
 class HamburgerButton extends React.Component {
   render() {
@@ -13,27 +13,29 @@ class HamburgerButton extends React.Component {
         viewBox="0 0 96 96"
         className={classNames({
           [style.navigationToggle]: true,
-          [style.navigationToggle__open]: this.props.toggle,
+          [style.navigationToggle__open]: this.props.toggle
         })}
         onClick={this.props.onClick}
       >
         <Motion
           style={{
             x: spring(this.props.toggle ? 1 : 0, presets.wobbly),
-            y: spring(this.props.toggle ? 0 : 1, presets.wobbly),
+            y: spring(this.props.toggle ? 0 : 1, presets.wobbly)
           }}
         >
           {({ x, y }) => (
             <g strokeWidth="14" strokeLinecap="round" strokeLinejoin="round">
               <line
-                transform={`translate(${x * 12}, ${x * -7}) rotate(${x * 45}, 7, 26)`}
+                transform={`translate(${x * 12}, ${x * -7}) rotate(${x *
+                  45}, 7, 26)`}
                 x1="7"
                 y1="26"
                 x2="89"
                 y2="26"
               />
               <line
-                transform={`translate(${x * 12}, ${x * 7}) rotate(${x * -45}, 7, 70)`}
+                transform={`translate(${x * 12}, ${x * 7}) rotate(${x *
+                  -45}, 7, 70)`}
                 x1="7"
                 y1="70"
                 x2="89"
@@ -51,38 +53,38 @@ class HamburgerButton extends React.Component {
           )}
         </Motion>
       </svg>
-    )
+    );
   }
 }
 
 class Header extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       elems: [
         {
           to: "/",
-          title: "Главная",
+          title: "Главная"
         },
         {
           to: "/treasures",
-          title: "Сокровища",
+          title: "Сокровища"
         },
         {
           to: "/about",
-          title: "Обо мне",
+          title: "Обо мне"
         },
         {
           to: "/archive",
-          title: "Архив",
-        },
+          title: "Архив"
+        }
       ],
-      toggle: false,
-    }
+      toggle: false
+    };
   }
 
   handleClick() {
-    this.setState({ toggle: !this.state.toggle })
+    this.setState({ toggle: !this.state.toggle });
   }
 
   render() {
@@ -92,14 +94,14 @@ class Header extends React.Component {
           {el.title}
         </Link>
       </li>
-    ))
+    ));
 
     return (
       <header
         className={classNames({
-          "container": true,
+          container: true,
           [style.header]: true,
-          [style.while]: this.props.white,
+          [style.while]: this.props.white
         })}
       >
         <Link to="/" className={style.title}>
@@ -109,7 +111,7 @@ class Header extends React.Component {
         <ul
           className={classNames({
             [style.navigation]: true,
-            [style.navigation__open]: this.state.toggle,
+            [style.navigation__open]: this.state.toggle
           })}
         >
           {listItems}
@@ -122,8 +124,8 @@ class Header extends React.Component {
 
         {this.state.toggle && <RemoveScrollBar />}
       </header>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;

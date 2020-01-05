@@ -11,17 +11,17 @@ $footer-icon: (
   "soc_github": #333333,
   "soc_telegram": #2ca5e0,
   "soc_youtube": #e32e28,
-  "soc_feed": #e77b39,
+  "soc_feed": #e77b39
 );
 
 @each $key, $value in $footer-icon {
-    .#{$key}:hover {
-      background-color: $value;
-      svg {
-        fill: #fff;
-      }
+  .#{$key}:hover {
+    background-color: $value;
+    svg {
+      fill: #fff;
     }
   }
+}
 
 @keyframes pulse {
   0% {
