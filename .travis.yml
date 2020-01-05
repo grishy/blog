@@ -3,8 +3,8 @@ node_js:
 - 'node'
 
 script:
-  - cd ./script/ && npm i && cd ..
-  - node ./script/ gen
+  - npm i
+  - npm run build
 
 deploy:
   provider: pages

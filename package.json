@@ -1,0 +1,60 @@
+{
+  "name": "gatsby-starter-blog",
+  "private": true,
+  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "classnames": "^2.2.6",
+    "gatsby": "^2.15.22",
+    "gatsby-image": "^2.2.21",
+    "gatsby-plugin-feed": "^2.3.13",
+    "gatsby-plugin-manifest": "^2.2.18",
+    "gatsby-plugin-offline": "^3.0.8",
+    "gatsby-plugin-react-helmet": "^3.1.8",
+    "gatsby-plugin-sass": "^2.1.15",
+    "gatsby-plugin-sharp": "^2.2.25",
+    "gatsby-plugin-stylelint": "^3.2.0",
+    "gatsby-remark-copy-linked-files": "^2.1.21",
+    "gatsby-remark-images": "^3.1.23",
+    "gatsby-remark-prismjs": "^3.3.14",
+    "gatsby-remark-responsive-iframe": "^2.2.18",
+    "gatsby-remark-smartypants": "^2.1.9",
+    "gatsby-source-filesystem": "^2.1.26",
+    "gatsby-transformer-remark": "^2.6.24",
+    "gatsby-transformer-sharp": "^2.2.17",
+    "node-sass": "^4.12.0",
+    "normalize.css": "^8.0.1",
+    "prismjs": "^1.17.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-motion": "^0.5.2",
+    "react-remove-scroll-bar": "^2.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  }
+}

@@ -1,0 +1,45 @@
+@import "../var.scss";
+@import "../mixin.scss";
+
+$img-width: 33%;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  flex: 1 0 auto;
+  padding-top: 4rem;
+}
+
+.article {
+  height: 15rem;
+  display: flex;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  border-bottom: solid 1px #eee;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.thumbnail {
+  background: #000;
+  width: $img-width;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  @include link();
+
+  width: 100%-$img-width;
+  align-self: flex-start;
+  padding-left: 1rem;
+  a {
+    font-size: 1.5rem;
+    word-break: break-word;
+  }
+}

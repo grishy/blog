@@ -1,0 +1,216 @@
+/*
+    ______    _ _                 _   _                     _     _ _                   _     _     _ _
+    |  ___|  | | |               | | | |                   | |   (_) |                 | |   | |   (_) |
+    | |_ ___ | | | _____      __ | |_| |__   ___  __      _| |__  _| |_ ___   _ __ __ _| |__ | |__  _| |_
+    |  _/ _ \| | |/ _ \ \ /\ / / | __| '_ \ / _ \ \ \ /\ / / '_ \| | __/ _ \ | '__/ _` | '_ \| '_ \| | __|
+    | || (_) | | | (_) \ V  V /  | |_| | | |  __/  \ V  V /| | | | | ||  __/ | | | (_| | |_) | |_) | | |_
+    \_| \___/|_|_|\___/ \_/\_/    \__|_| |_|\___|   \_/\_/ |_| |_|_|\__\___| |_|  \__,_|_.__/|_.__/|_|\__|
+
+http://www.network-science.de/ascii/
+font basic
+
+SVG: Font Awesome
+*/
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit
+}
+
+*::selection {
+  background: #279de5;
+  color: #fff;
+  text-shadow: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0
+}
+
+body {
+  background-color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 750px) {
+  html {
+      font-size:16px
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+      font-size:17px
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+      font-size:18px
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+main,
+form legend {
+  display: block
+}
+
+ol,
+ul {
+  list-style: none
+}
+
+blockquote,
+q {
+  quotes: none
+}
+
+button,
+input,
+textarea,
+select {
+  margin: 0
+}
+
+
+img,
+video,
+svg {
+  max-width: 100%
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh
+}
+
+@media (min-width: 750px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1100px;
+  }
+}
